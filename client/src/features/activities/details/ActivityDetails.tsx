@@ -9,9 +9,13 @@ const gridStyles = {
 
 interface Props {
   activity: Activity;
+  cancelSelectActivity: () => void;
 }
 
-export default function ActivityDetails({ activity }: Props) {
+export default function ActivityDetails({
+  activity,
+  cancelSelectActivity,
+}: Props) {
   return (
     <Card fluid style={gridStyles}>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
@@ -24,8 +28,18 @@ export default function ActivityDetails({ activity }: Props) {
       </Card.Content>
       <Card.Content extra style={{ padding: "20px" }}>
         <ButtonGroup widths="2">
-          <Button inverted color="blue" content="Edit" style={{ marginRight: "10px" }} />
-          <Button inverted color="orange"  content="Cancel" />
+          <Button
+            inverted
+            color="blue"
+            content="Edit"
+            style={{ marginRight: "10px" }}
+          />
+          <Button
+            inverted
+            color="orange"
+            content="Cancel"
+            onClick={cancelSelectActivity}
+          />
         </ButtonGroup>
       </Card.Content>
     </Card>
