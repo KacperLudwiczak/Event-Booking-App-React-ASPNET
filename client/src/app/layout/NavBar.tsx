@@ -5,7 +5,7 @@ export default function NavBar() {
         <Menu inverted secondary fixed='top'>
             <Container>
                 <Menu.Item header style={{ fontSize: '1.1em' }}>
-                    <img src='/assets/calendar.png' alt='logo' style={{marginRight: 10}}/>
+                    <img src='/assets/logo.png' alt='logo' style={{marginRight: 10}}/>
                     Reactivities
                 </Menu.Item>
                 <Menu.Item name='Activities' style={{ fontSize: '1em' }}/>
