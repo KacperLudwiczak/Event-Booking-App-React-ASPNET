@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Card, Image } from "semantic-ui-react";
 
 const gridStyles = {
   borderRadius: "25px",
-  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.2)",
+  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
   overflow: "hidden",
 };
 
@@ -25,7 +25,7 @@ export default function ActivityDetails({ activity }: Props) {
       <Card.Content extra style={{ padding: "20px" }}>
         <ButtonGroup widths="2">
           <Button inverted color="blue" content="Edit" style={{ marginRight: "10px" }} />
-          <Button inverted color="blue"  content="Cancel" />
+          <Button inverted color="orange"  content="Cancel" />
         </ButtonGroup>
       </Card.Content>
     </Card>
