@@ -50,14 +50,18 @@ export default function App() {
   }
 
   function handleDeleteActivity(id: string) {
-    setActivities([...activities.filter((x) => x.id !== id)]);
+    setSubmitting(true);
+    agent.Activities.delete(id).then(() => {
+        setActivities([...activities.filter(item => item.id !== id)])
+        setSubmitting(false);
+    })
   }
 
   function handleCreateOrEditActivity(activity: Activity) {
     setSubmitting(true);
     if (activity.id) {
       agent.Activities.update(activity).then(() => {
-        setActivities([...activities.filter(x => x.id !== activity.id), activity]);
+        setActivities([...activities.filter(item => item.id !== activity.id), activity]);
         setSelectedActivity(activity);
         setEditMode(false);
         setSubmitting(false);
