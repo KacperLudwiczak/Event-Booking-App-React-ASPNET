@@ -11,9 +11,10 @@ const segmentStyles = {
 interface Props {
   activity: Activity | undefined;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 }
 
-export default function ActivityForm({ activity: selectedActivity, closeForm }: Props) {
+export default function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit }: Props) {
   const initialState = selectedActivity ?? {
     id: "",
     title: "",
@@ -26,7 +27,7 @@ export default function ActivityForm({ activity: selectedActivity, closeForm }: 
   const [activity, setActivity] = useState(initialState);
 
   function handleSubmit() {
-    console.log(activity);
+    createOrEdit(activity);
   }
 
   function handleInputChange(
