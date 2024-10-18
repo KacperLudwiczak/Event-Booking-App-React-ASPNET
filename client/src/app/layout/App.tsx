@@ -42,6 +42,10 @@ export default function App() {
     setEditMode(false);
   }
 
+  function handleDeleteActivity(id: string) {
+    setActivities([...activities.filter(x => x.id !== id)])
+  }
+
   function handleCreateOrEditActivity(activity: Activity) {
     if (activity.id) {
       setActivities([
@@ -68,6 +72,7 @@ export default function App() {
           openForm={handleFormOpen}
           closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
+          deleteActivity={handleDeleteActivity}
         />
       </Container>
     </>

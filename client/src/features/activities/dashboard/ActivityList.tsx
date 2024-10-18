@@ -10,9 +10,14 @@ const segmentStyles = {
 interface Props {
   activities: Activity[];
   selectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 }
 
-export default function ActivityList({ activities, selectActivity }: Props) {
+export default function ActivityList({
+  activities,
+  selectActivity,
+  deleteActivity,
+}: Props) {
   return (
     <Segment style={segmentStyles}>
       <Item.Group divided>
@@ -35,7 +40,13 @@ export default function ActivityList({ activities, selectActivity }: Props) {
                   color="blue"
                   onClick={() => selectActivity(activity.id)}
                 />
-                <Button inverted floated="right" content="Delete" color="red" />
+                <Button
+                  inverted
+                  floated="right"
+                  content="Delete"
+                  color="red"
+                  onClick={() => deleteActivity(activity.id)}
+                />
                 <Label basic content={activity.category} />
               </Item.Extra>
             </Item.Content>
