@@ -10,11 +10,13 @@ const gridStyles = {
 interface Props {
   activity: Activity;
   cancelSelectActivity: () => void;
+  openForm: (id: string) => void;
 }
 
 export default function ActivityDetails({
   activity,
   cancelSelectActivity,
+  openForm,
 }: Props) {
   return (
     <Card fluid style={gridStyles}>
@@ -33,6 +35,7 @@ export default function ActivityDetails({
             color="blue"
             content="Edit"
             style={{ marginRight: "10px" }}
+            onClick={() => openForm(activity.id)}
           />
           <Button
             inverted

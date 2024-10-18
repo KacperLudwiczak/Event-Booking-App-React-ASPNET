@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { Button, ButtonGroup, Form, Segment } from "semantic-ui-react";
+import { Activity } from "../../../app/models/activity";
 
 const segmentStyles = {
   padding: "25px",
@@ -7,7 +8,12 @@ const segmentStyles = {
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
 };
 
-export default function ActivityForm() {
+interface Props {
+  activity: Activity | undefined;
+  closeForm: () => void;
+}
+
+export default function ActivityForm({ activity, closeForm }: Props) {
   const initialState = {
     id: "",
     title: "",
@@ -17,7 +23,7 @@ export default function ActivityForm() {
     city: "",
     venue: "",
   };
-  const [activity, setActivity] = useState(initialState);
+  // const [activity, setActivity] = useState(initialState);
 
   function handleSubmit() {
     // createOrEdit(activity);
@@ -69,10 +75,20 @@ export default function ActivityForm() {
           name="venue"
           onChange={handleInputChange}
         />
-        <ButtonGroup widths="2" style={{marginTop: "10px"}}>
-          <Button inverted color="blue" content="Submit" style={{ marginRight: "10px" }} />
-          <Button inverted color="orange"  content="Cancel" />
-        </ButtonGroup> 
+        <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
+          <Button
+            inverted
+            color="blue"
+            content="Submit"
+            style={{ marginRight: "10px" }}
+          />
+          <Button
+            inverted
+            color="orange"
+            content="Cancel"
+            onClick={closeForm}
+          />
+        </ButtonGroup>
       </Form>
     </Segment>
   );
