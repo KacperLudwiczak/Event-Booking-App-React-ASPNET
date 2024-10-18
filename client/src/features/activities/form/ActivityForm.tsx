@@ -13,8 +13,8 @@ interface Props {
   closeForm: () => void;
 }
 
-export default function ActivityForm({ activity, closeForm }: Props) {
-  const initialState = {
+export default function ActivityForm({ activity: selectedActivity, closeForm }: Props) {
+  const initialState = selectedActivity ?? {
     id: "",
     title: "",
     category: "",
@@ -23,10 +23,10 @@ export default function ActivityForm({ activity, closeForm }: Props) {
     city: "",
     venue: "",
   };
-  // const [activity, setActivity] = useState(initialState);
+  const [activity, setActivity] = useState(initialState);
 
   function handleSubmit() {
-    // createOrEdit(activity);
+    console.log(activity);
   }
 
   function handleInputChange(
