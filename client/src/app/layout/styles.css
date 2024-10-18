@@ -5,7 +5,7 @@ body {
   background: linear-gradient(
     90deg,
     rgb(124, 185, 255) 0%,
-    rgba(142, 193, 247, 1) 51%,
-    rgba(204, 223, 244, 1) 100%
+    rgb(163, 205, 250) 51%,
+    rgb(215, 231, 250) 100%
   ) !important;
 }
