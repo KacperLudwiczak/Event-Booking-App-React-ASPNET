@@ -11,11 +11,18 @@ namespace API.Controllers
         {
             return await Mediator.Send(new List.Query());
         }
-        
+
         [HttpGet("{id}")] //api/activities/id
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
-            return await Mediator.Send(new Details.Query{Id = id});
+            return await Mediator.Send(new Details.Query { Id = id });
+        }
+
+        [HttpPost] //api/activities/
+        public async Task<IActionResult> CreateActivity(Activity activity)
+        {
+            await Mediator.Send(new Create.Command { Activity = activity });
+            return Ok();
         }
     }
 }
