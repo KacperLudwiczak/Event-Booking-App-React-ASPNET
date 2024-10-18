@@ -18,10 +18,18 @@ namespace API.Controllers
             return await Mediator.Send(new Details.Query { Id = id });
         }
 
-        [HttpPost] //api/activities/
+        [HttpPost] //api/activities
         public async Task<IActionResult> CreateActivity(Activity activity)
         {
             await Mediator.Send(new Create.Command { Activity = activity });
+            return Ok();
+        }
+
+        [HttpPut("{id}")] //api/activities/id
+        public async Task<IActionResult> Edit(Guid id, Activity activity)
+        {
+            activity.Id = id;
+            await Mediator.Send(new Edit.Command { Activity = activity });
             return Ok();
         }
     }
