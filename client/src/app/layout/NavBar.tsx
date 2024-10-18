@@ -2,15 +2,15 @@ import {Button, Container, Menu} from "semantic-ui-react";
 
 export default function NavBar() {
     return (
-        <Menu inverted fixed='top'>
+        <Menu inverted secondary fixed='top'>
             <Container>
                 <Menu.Item header>
-                    <img src='/assets/logo.png' alt='logo' style={{marginRight: 10}}/>
+                    <img src='/assets/calendar.png' alt='logo' style={{marginRight: 10}}/>
                     Reactivities
                 </Menu.Item>
                 <Menu.Item name='Activities' />
                 <Menu.Item>
-                    <Button positive content='Create Activity' />
+                    <Button inverted content='Create Activity' />
                 </Menu.Item>
             </Container>
         </Menu>
