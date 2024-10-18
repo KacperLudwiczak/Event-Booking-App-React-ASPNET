@@ -4,7 +4,7 @@ import { Activity } from "../../../app/models/activity";
 const segmentStyles = {
   padding: "25px",
   borderRadius: "25px",
-  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.2)",
 };
 
 interface Props {
