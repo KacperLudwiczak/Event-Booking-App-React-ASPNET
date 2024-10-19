@@ -1,11 +1,16 @@
 body {
-  background-color: rgb(239, 244, 252) !important;
-}
-.ui.inverted.top.fixed.menu {
   background: linear-gradient(
     90deg,
     rgb(124, 185, 255) 0%,
     rgb(163, 205, 250) 51%,
     rgb(215, 231, 250) 100%
+  ) !important;
+}
+.ui.inverted.top.fixed.menu {
+  background: linear-gradient(
+    90deg,
+    rgb(124, 185, 255,  0.8) 0%,
+    rgb(163, 205, 250,  0.8) 51%,
+    rgb(215, 231, 250,  0.8) 100%
   ) !important;
 }
