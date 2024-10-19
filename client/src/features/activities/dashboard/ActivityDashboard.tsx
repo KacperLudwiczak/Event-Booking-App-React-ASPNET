@@ -8,14 +8,12 @@ import { observer } from "mobx-react-lite";
 
 interface Props {
   activities: Activity[];
-  createOrEdit: (activity: Activity) => void;
   deleteActivity: (id: string) => void;
   submitting: boolean;
 }
 
 function ActivityDashboard({
   activities,
-  createOrEdit,
   deleteActivity,
   submitting,
 }: Props) {
@@ -34,7 +32,7 @@ function ActivityDashboard({
       <Grid.Column width="6">
         {selectedActivity && !editMode && <ActivityDetails />}
         {editMode && (
-          <ActivityForm createOrEdit={createOrEdit} submitting={submitting} />
+          <ActivityForm />
         )}
       </Grid.Column>
     </Grid>
