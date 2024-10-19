@@ -2,8 +2,9 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { Button, ButtonGroup, Form, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
+import { v4 as uuid } from "uuid";
 
 const segmentStyles = {
   padding: "25px",
@@ -21,6 +22,7 @@ function ActivityForm() {
     loadingInitial,
   } = activityStore;
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [activity, setActivity] = useState({
     id: "",
@@ -37,10 +39,15 @@ function ActivityForm() {
   }, [id, loadActivity]);
 
   function handleSubmit() {
-    if (activity.id) {
-      updateActivity(activity);
+    if (!activity.id) {
+      activity.id = uuid();
+      createActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`)
+      );
     } else {
-      createActivity(activity);
+      updateActivity(activity).then(() =>
+        navigate(`/activities/${activity.id}`)
+      );
     }
   }
 
@@ -51,7 +58,7 @@ function ActivityForm() {
     setActivity({ ...activity, [name]: value });
   }
 
-  if (loadingInitial) return <LoadingComponent content='Loading activity...' />
+  if (loadingInitial) return <LoadingComponent content="Loading activity..." />;
 
   return (
     <Segment clearing style={segmentStyles}>
