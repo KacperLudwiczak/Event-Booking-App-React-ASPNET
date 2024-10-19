@@ -10,7 +10,7 @@ const gridStyles = {
 
 export default function ActivityDetails() {
   const { activityStore } = useStore();
-  const {selectedActivity: activity, openForm, cancelSelectActivity} = activityStore;
+  const {selectedActivity: activity} = activityStore;
 
   if(!activity) return <LoadingComponent />;
 
@@ -31,13 +31,11 @@ export default function ActivityDetails() {
             color="blue"
             content="Edit"
             style={{ marginRight: "10px" }}
-            onClick={() => openForm(activity.id)}
           />
           <Button
             inverted
             color="orange"
             content="Cancel"
-            onClick={cancelSelectActivity}
           />
         </ButtonGroup>
       </Card.Content>

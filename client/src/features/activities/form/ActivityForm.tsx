@@ -13,7 +13,6 @@ function ActivityForm() {
   const { activityStore } = useStore();
   const {
     selectedActivity,
-    closeForm,
     createActivity,
     updateActivity,
     loading,
@@ -97,7 +96,6 @@ function ActivityForm() {
             inverted
             color="orange"
             content="Cancel"
-            onClick={closeForm}
           />
         </ButtonGroup>
       </Form>
