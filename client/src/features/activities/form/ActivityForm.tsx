@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { Button, ButtonGroup, Form, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { v4 as uuid } from "uuid";
 
@@ -108,7 +108,13 @@ function ActivityForm() {
             content="Submit"
             style={{ marginRight: "10px" }}
           />
-          <Button inverted color="orange" content="Cancel" />
+          <Button
+            inverted
+            as={Link}
+            to="/activities"
+            color="orange"
+            content="Cancel"
+          />
         </ButtonGroup>
       </Form>
     </Segment>

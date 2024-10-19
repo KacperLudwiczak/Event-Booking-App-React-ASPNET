@@ -51,7 +51,7 @@ function ActivityDetails() {
             as={Link}
             to="/activities"
             color="orange"
-            content="Cancel"
+            content="Close"
           />
         </ButtonGroup>
       </Card.Content>
