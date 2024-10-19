@@ -1,5 +1,6 @@
-import { Activity } from "../../../app/models/activity";
 import { Button, ButtonGroup, Card, Image } from "semantic-ui-react";
+import { useStore } from "../../../app/stores/store";
+import LoadingComponent from "../../../app/layout/LoadingComponent";
 
 const gridStyles = {
   borderRadius: "25px",
@@ -7,17 +8,12 @@ const gridStyles = {
   overflow: "hidden",
 };
 
-interface Props {
-  activity: Activity;
-  cancelSelectActivity: () => void;
-  openForm: (id: string) => void;
-}
+export default function ActivityDetails() {
+  const { activityStore } = useStore();
+  const {selectedActivity: activity, openForm, cancelSelectActivity} = activityStore;
 
-export default function ActivityDetails({
-  activity,
-  cancelSelectActivity,
-  openForm,
-}: Props) {
+  if(!activity) return <LoadingComponent />;
+
   return (
     <Card fluid style={gridStyles}>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} />

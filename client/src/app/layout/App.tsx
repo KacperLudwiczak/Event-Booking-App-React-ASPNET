@@ -23,69 +23,46 @@ function App() {
     activityStore.loadActivities();
   }, [activityStore]);
 
-  function handleSelectActivity(id: string) {
-    setSelectedActivity(activities.find((item) => item.id === id));
-  }
-
-  function handleCancelSelect() {
-    setSelectedActivity(undefined);
-  }
-
-  function handleFormOpen(id?: string) {
-    if (id) {
-      handleSelectActivity(id);
-    } else {
-      handleCancelSelect();
-    }
-    setEditMode(true);
-  }
-
-  function handleFormClose() {
-    setEditMode(false);
-  }
-
   function handleDeleteActivity(id: string) {
     setSubmitting(true);
     agent.Activities.delete(id).then(() => {
-        setActivities([...activities.filter(item => item.id !== id)])
-        setSubmitting(false);
-    })
+      setActivities([...activities.filter((item) => item.id !== id)]);
+      setSubmitting(false);
+    });
   }
 
   function handleCreateOrEditActivity(activity: Activity) {
     setSubmitting(true);
     if (activity.id) {
       agent.Activities.update(activity).then(() => {
-        setActivities([...activities.filter(item => item.id !== activity.id), activity]);
+        setActivities([
+          ...activities.filter((item) => item.id !== activity.id),
+          activity,
+        ]);
         setSelectedActivity(activity);
         setEditMode(false);
         setSubmitting(false);
-    })
+      });
     } else {
       activity.id = uuid();
       agent.Activities.create(activity).then(() => {
-          setActivities([...activities, activity]);
-          setSelectedActivity(activity);
-          setEditMode(false);
-          setSubmitting(false);
-      })
+        setActivities([...activities, activity]);
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      });
     }
   }
 
-  if (activityStore.loadingInitial) return <LoadingComponent content='Loading app...' />
+  if (activityStore.loadingInitial)
+    return <LoadingComponent content="Loading app..." />;
 
   return (
     <>
-      <NavBar openForm={handleFormOpen} />
+      <NavBar />
       <Container style={{ marginTop: "7em" }}>
         <ActivityDashboard
           activities={activityStore.activities}
-          selectedActivity={selectedActivity}
-          selectActivity={handleSelectActivity}
-          cancelSelectActivity={handleCancelSelect}
-          editMode={editMode}
-          openForm={handleFormOpen}
-          closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={handleDeleteActivity}
           submitting={submitting}

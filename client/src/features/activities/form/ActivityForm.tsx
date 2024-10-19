@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { Button, ButtonGroup, Form, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import { useStore } from "../../../app/stores/store";
 
 const segmentStyles = {
   padding: "25px",
@@ -9,18 +10,17 @@ const segmentStyles = {
 };
 
 interface Props {
-  activity: Activity | undefined;
-  closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
   submitting: boolean;
 }
 
 export default function ActivityForm({
-  activity: selectedActivity,
-  closeForm,
   createOrEdit,
   submitting,
 }: Props) {
+  const { activityStore } = useStore();
+  const {selectedActivity, closeForm} = activityStore;
+  
   const initialState = selectedActivity ?? {
     id: "",
     title: "",
