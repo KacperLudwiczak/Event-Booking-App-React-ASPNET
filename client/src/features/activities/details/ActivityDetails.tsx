@@ -2,7 +2,7 @@ import { Button, ButtonGroup, Card, Image } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { observer } from "mobx-react-lite";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const gridStyles = {
@@ -42,9 +42,17 @@ function ActivityDetails() {
             inverted
             color="blue"
             content="Edit"
+            as={Link}
+            to={`/manage/${activity.id}`}
             style={{ marginRight: "10px" }}
           />
-          <Button inverted color="orange" content="Cancel" />
+          <Button
+            inverted
+            as={Link}
+            to="/activities"
+            color="orange"
+            content="Cancel"
+          />
         </ButtonGroup>
       </Card.Content>
     </Card>
