@@ -106,5 +106,4 @@ function ActivityForm() {
 }
 
 const ObservedActivityForm = observer(ActivityForm);
-
 export default ObservedActivityForm;

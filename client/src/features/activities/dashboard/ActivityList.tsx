@@ -65,5 +65,4 @@ function ActivityList() {
 }
 
 const ObservedActivityList = observer(ActivityList);
-
 export default ObservedActivityList;
