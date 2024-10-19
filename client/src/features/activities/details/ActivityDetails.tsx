@@ -1,6 +1,9 @@
 import { Button, ButtonGroup, Card, Image } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
+import { observer } from "mobx-react-lite";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const gridStyles = {
   borderRadius: "25px",
@@ -8,11 +11,20 @@ const gridStyles = {
   overflow: "hidden",
 };
 
-export default function ActivityDetails() {
+function ActivityDetails() {
   const { activityStore } = useStore();
-  const {selectedActivity: activity} = activityStore;
+  const {
+    selectedActivity: activity,
+    loadActivity,
+    loadingInitial,
+  } = activityStore;
+  const { id } = useParams();
 
-  if(!activity) return <LoadingComponent />;
+  useEffect(() => {
+    if (id) loadActivity(id);
+  }, [id, loadActivity]);
+
+  if (loadingInitial || !activity) return <LoadingComponent />;
 
   return (
     <Card fluid style={gridStyles}>
@@ -32,13 +44,12 @@ export default function ActivityDetails() {
             content="Edit"
             style={{ marginRight: "10px" }}
           />
-          <Button
-            inverted
-            color="orange"
-            content="Cancel"
-          />
+          <Button inverted color="orange" content="Cancel" />
         </ButtonGroup>
       </Card.Content>
     </Card>
   );
 }
+
+const ObservedActivityDetails = observer(ActivityDetails);
+export default ObservedActivityDetails;
