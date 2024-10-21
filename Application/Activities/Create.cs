@@ -11,11 +11,11 @@ namespace Application.Activities
         {
             public Activity Activity { get; set; }
         }
-        public class CommandValidator : AbstractValidator<Activity>
+        public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(item => item.Title).NotEmpty();
+                RuleFor(item => item.Activity).SetValidator(new ActivityValidator());
             }
         }
         public class Handler : IRequestHandler<Command>
