@@ -10,6 +10,7 @@ import ActivityDetailedChat from "./ActivityDetailedChat";
 import ActivityDetailedSidebar from "./ActivityDetailedSidebar";
 
 const gridStyles = {
+  backgroundColor: "#fff",
   borderRadius: "25px",
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
   overflow: "hidden",
@@ -33,7 +34,7 @@ function ActivityDetails() {
   return (
     <Grid style={gridStyles}>
       <Grid.Column width="10">
-        <ActivityDetailedHeader />
+        <ActivityDetailedHeader activity={activity} />
         <ActivityDetailedInfo />
         <ActivityDetailedChat />
       </Grid.Column>
