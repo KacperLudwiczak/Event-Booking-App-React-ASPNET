@@ -1,9 +1,13 @@
-import { Button, ButtonGroup, Card, Image } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { observer } from "mobx-react-lite";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import ActivityDetailedHeader from "./ActivityDetailedHeader";
+import ActivityDetailedInfo from "./ActivityDetailedInfo";
+import ActivityDetailedChat from "./ActivityDetailedChat";
+import ActivityDetailedSidebar from "./ActivityDetailedSidebar";
 
 const gridStyles = {
   borderRadius: "25px",
@@ -27,35 +31,16 @@ function ActivityDetails() {
   if (loadingInitial || !activity) return <LoadingComponent />;
 
   return (
-    <Card fluid style={gridStyles}>
-      <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
-      <Card.Content>
-        <Card.Header>{activity.title}</Card.Header>
-        <Card.Meta>
-          <span>{activity.date}</span>
-        </Card.Meta>
-        <Card.Description>{activity.description}</Card.Description>
-      </Card.Content>
-      <Card.Content extra style={{ padding: "20px" }}>
-        <ButtonGroup widths="2">
-          <Button
-            inverted
-            color="blue"
-            content="Edit"
-            as={Link}
-            to={`/manage/${activity.id}`}
-            style={{ marginRight: "10px" }}
-          />
-          <Button
-            inverted
-            as={Link}
-            to="/activities"
-            color="orange"
-            content="Close"
-          />
-        </ButtonGroup>
-      </Card.Content>
-    </Card>
+    <Grid style={gridStyles}>
+      <Grid.Column width="10">
+        <ActivityDetailedHeader />
+        <ActivityDetailedInfo />
+        <ActivityDetailedChat />
+      </Grid.Column>
+      <Grid.Column width="6">
+        <ActivityDetailedSidebar />
+      </Grid.Column>
+    </Grid>
   );
 }
 
