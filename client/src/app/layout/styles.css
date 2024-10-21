@@ -14,3 +14,10 @@ body {
     rgb(215, 231, 250,  0.8) 100%
   ) !important;
 }
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+}
