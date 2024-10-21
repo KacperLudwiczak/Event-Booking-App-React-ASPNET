@@ -14,6 +14,7 @@ const gridStyles = {
   borderRadius: "25px",
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
   overflow: "hidden",
+  padding: "15px"
 };
 
 function ActivityDetails() {

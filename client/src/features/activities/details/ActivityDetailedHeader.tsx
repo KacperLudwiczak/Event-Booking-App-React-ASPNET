@@ -6,7 +6,8 @@ const segmentStyles = {
     borderRadius: "25px",
     boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
-    padding: "0"
+    padding: "0",
+     border: "none"
   };
 const activityImageStyle = {
     filter: 'brightness(30%)'
@@ -27,7 +28,7 @@ interface Props {
 function ActivityDetailedHeader({activity}: Props) {
   return (
     <>
-      <Item>
+      <Item style={{marginBottom: "25px"}}>
         <Segment basic attached="top" style={segmentStyles}>
           <Image
             src={`/assets/categoryImages/${activity.category}.jpg`}

@@ -7,7 +7,7 @@ interface Props {
 
 function ActivityDetailedInfo({activity}: Props) {
     return (
-        <Item>
+        <Item style={{marginBottom: "25px"}}>
         <Item.Content attached='top'>
             <Grid>
                 <Grid.Column width={1}>
