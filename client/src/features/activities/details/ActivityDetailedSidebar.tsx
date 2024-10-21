@@ -34,7 +34,7 @@ function ActivityDetailedSidebar() {
               Host
             </Label>
             <Image size="tiny" circular src={"/assets/user.png"} />
-            <Item.Content verticalAlign="middle">
+            <Item.Content verticalAlign="middle" style={{marginLeft: "10px", marginTop: "10px"}}>
               <Item.Header as="h3">
                 <Link to={`#`} style={{ color: "#54c8ff" }}>Bob</Link>
               </Item.Header>
@@ -43,7 +43,7 @@ function ActivityDetailedSidebar() {
           </Item>
           <Item style={{ position: "relative" }}>
             <Image size="tiny" circular src={"/assets/user.png"} />
-            <Item.Content verticalAlign="middle">
+            <Item.Content verticalAlign="middle" style={{marginLeft: "10px", marginTop: "10px"}}>
               <Item.Header as="h3">
                 <Link to={`#`} style={{ color: "#54c8ff" }}>Tom</Link>
               </Item.Header>
@@ -52,7 +52,7 @@ function ActivityDetailedSidebar() {
           </Item>
           <Item style={{ position: "relative" }}>
             <Image size="tiny" circular src={"/assets/user.png"} />
-            <Item.Content verticalAlign="middle">
+            <Item.Content verticalAlign="middle" style={{marginLeft: "10px", marginTop: "10px"}}>
               <Item.Header as="h3">
                 <Link to={`#`} style={{ color: "#54c8ff" }}>Sally</Link>
               </Item.Header>
