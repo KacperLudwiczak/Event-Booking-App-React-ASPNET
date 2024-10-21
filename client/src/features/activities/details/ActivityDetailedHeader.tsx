@@ -4,8 +4,9 @@ import {Activity} from "../../../app/models/activity";
 
 const segmentStyles = {
     borderRadius: "25px",
-    boxShadow: "0 6px 30px rgba(0, 0, 0, 0.3)",
+    boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
+    padding: "0"
   };
 const activityImageStyle = {
     filter: 'brightness(30%)'
@@ -26,8 +27,8 @@ interface Props {
 function ActivityDetailedHeader({activity}: Props) {
   return (
     <>
-      <Segment.Group style={segmentStyles}>
-        <Segment basic attached="top" style={{ padding: "0" }}>
+      <Item>
+        <Segment basic attached="top" style={segmentStyles}>
           <Image
             src={`/assets/categoryImages/${activity.category}.jpg`}
             fluid
@@ -51,14 +52,14 @@ function ActivityDetailedHeader({activity}: Props) {
             </Item.Group>
           </Segment>
         </Segment>
-        <Segment clearing attached="bottom">
+        <Item clearing attached="bottom" style={{margin: "15px 0px"}}>
           <Button inverted color="blue" style={{marginRight: "5px"}}>Join Activity</Button>
           <Button inverted color="orange" >Cancel attendance</Button>
           <Button inverted color="blue" floated="right">
             Manage Event
           </Button>
-        </Segment>
-      </Segment.Group>
+        </Item>
+      </Item>
     </>
   );
 }
