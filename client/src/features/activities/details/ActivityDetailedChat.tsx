@@ -83,6 +83,7 @@ function ActivityDetailedChat() {
               labelPosition="left"
               icon="edit"
               primary
+              style={{borderRadius: "25px"}}
             />
           </Form>
         </Comment.Group>

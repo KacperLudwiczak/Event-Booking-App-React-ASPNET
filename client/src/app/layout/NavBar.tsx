@@ -21,6 +21,7 @@ export default function NavBar() {
             to="/createActivity"
             inverted
             content="Create Activity"
+            style={{borderRadius: "25px"}}
           />
         </Menu.Item>
       </Container>

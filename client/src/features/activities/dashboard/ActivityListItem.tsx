@@ -34,9 +34,10 @@ export default function ActivityListItem({ activity }: Props) {
             inverted
             floated="right"
             content="View"
-            color="blue"
+            color="blue"        
             as={Link}
             to={`/activities/${activity.id}`}
+            style={{borderRadius: "25px"}}
           />
         </Item.Extra>
       </Item.Content>
