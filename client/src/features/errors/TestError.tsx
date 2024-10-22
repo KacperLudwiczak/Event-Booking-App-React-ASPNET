@@ -11,30 +11,30 @@ export default function TestErrors() {
   function handleNotFound() {
     axios
       .get(baseUrl + "bugs/not-found")
-      .catch((err) => console.log(err.response));
+      .catch((error) => console.log(error.response));
   }
   function handleBadRequest() {
     axios
       .get(baseUrl + "bugs/bad-request")
-      .catch((err) => console.log(err.response));
+      .catch((error) => console.log(error.response));
   }
   function handleServerError() {
     axios
       .get(baseUrl + "bugs/server-error")
-      .catch((err) => console.log(err.response));
+      .catch((error) => console.log(error.response));
   }
   function handleUnauthorised() {
     axios
       .get(baseUrl + "bugs/unauthorised")
-      .catch((err) => console.log(err.response));
+      .catch((error) => console.log(error.response));
   }
   function handleBadGuid() {
     axios
       .get(baseUrl + "activities/notaguid")
-      .catch((err) => console.log(err.response));
+      .catch((error) => console.log(error.response));
   }
   function handleValidationError() {
-    axios.post(baseUrl + "activities", {}).catch((err) => setErrors(err));
+    axios.post(baseUrl + "activities", {}).catch((error) => setErrors(error));
   }
 
   return (
