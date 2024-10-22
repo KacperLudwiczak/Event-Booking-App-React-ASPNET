@@ -3,6 +3,16 @@ import { Button, Header, Segment } from "semantic-ui-react";
 import axios from "axios";
 import ValidationError from "./ValidationError";
 
+const segmentStyles = {
+    borderRadius: "25px",
+    boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
+    overflow: "hidden",
+    padding: "15px",
+    border: "none",
+    marginBottom: "25px",
+  };
+
+
 export default function TestErrors() {
   const baseUrl = "http://localhost:5000/api/";
   const [errors, setErrors] = useState(null);
@@ -38,8 +48,8 @@ export default function TestErrors() {
 
   return (
     <>
-      <Header as="h1" content="Test Error component" />
-      <Segment>
+      <Header as="h1" content="Test Error component" style={{color: "#fff"}}/>
+      <Segment style={segmentStyles}>
         <Button.Group widths="7">
           <Button onClick={handleNotFound} content="Not Found" basic primary />
           <Button
