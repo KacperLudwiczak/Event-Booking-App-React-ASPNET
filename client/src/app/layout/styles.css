@@ -49,3 +49,22 @@ body {
   font-weight: normal;
 }
 /*end home page styles*/
+
+/*react date picker styles*/
+.react-datepicker-wrapper {
+  width: 100%;
+}
+/* .react-datepicker__month-container{
+  border-radius: 25px;
+}
+.react-datepicker__navigation--next{
+  right: 15px
+}
+.react-datepicker{
+  border-radius: 25px;
+}
+.react-datepicker__header{
+  border-radius: 25px;
+  width: 250px
+} */
+/*end react date picker styles*/
