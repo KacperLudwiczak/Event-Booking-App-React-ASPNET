@@ -9,7 +9,7 @@ namespace API.Controllers
         [HttpGet] //api/activities
         public async Task<IActionResult> GetActivities()
         {
-             return HandleResult(await Mediator.Send(new List.Query()));
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
         [HttpGet("{id}")] //api/activities/id
@@ -21,8 +21,7 @@ namespace API.Controllers
         [HttpPost] //api/activities
         public async Task<IActionResult> CreateActivity(Activity activity)
         {
-            await Mediator.Send(new Create.Command { Activity = activity });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Create.Command { Activity = activity }));
         }
 
         [HttpPut("{id}")] //api/activities/id
