@@ -83,7 +83,7 @@ function ActivityForm() {
   return (
     <div style={containerStyles}>
       <Segment clearing style={segmentStyles}>
-        <Header content="Activity Details" sub color="teal" />
+        <Header content="Activity Details" sub style={{color: "#54c8ff"}}  />
         <Formik
           enableReinitialize
           validationSchema={validationSchema}
@@ -115,7 +115,7 @@ function ActivityForm() {
                 dateFormat="MMMM d, yyyy h:mm aa"
               />
 
-              <Header content="Location Details" sub color="teal" />
+              <Header content="Location Details" sub style={{color: "#54c8ff"}} />
               <MyTextInput placeholder="City" name="city" />
               <MyTextInput placeholder="Venue" name="venue" />
 
