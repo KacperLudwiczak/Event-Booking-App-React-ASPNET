@@ -8,6 +8,8 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyTextArea from "../../../app/common/form/MyTextArea";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import { categoryOptions } from "../../../app/common/options/categoryOptions";
 
 const containerStyles = {
   display: "flex",
@@ -93,7 +95,7 @@ function ActivityForm() {
                 placeholder="Description"
                 name="description"
               />
-              <MyTextInput placeholder="Category" name="category" />
+              <MySelectInput options={categoryOptions} placeholder="Category" name="category" />
               <MyTextInput placeholder="Date" name="date" />
               <MyTextInput placeholder="City" name="city" />
               <MyTextInput placeholder="Venue" name="venue" />
