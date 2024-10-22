@@ -12,14 +12,14 @@ interface Props {
 
 export default function ValidationError({ errors }: Props) {
   return (
-    <Item style={itemStyles}>
+    <>
       {errors && (
-        <Item>
-          {errors.map((err: string, i) => (
-            <Message.Item key={i}>{err}</Message.Item>
+        <Item style={itemStyles}>
+          {errors.map((error: string, id) => (
+            <Message.Item key={id}>{error}</Message.Item>
           ))}
         </Item>
       )}
-    </Item>
+    </>
   );
 }
