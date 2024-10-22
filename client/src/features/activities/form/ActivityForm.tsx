@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, ButtonGroup, Form, Segment } from "semantic-ui-react";
+import { Button, ButtonGroup, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { Link, useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { Formik } from "formik";
+import { Formik, Form, Field } from "formik";
 
 const containerStyles = {
   display: "flex",
@@ -68,45 +68,18 @@ function ActivityForm() {
           initialValues={activity}
           onSubmit={(values) => console.log(values)}
         >
-          {({ values: activity, handleChange, handleSubmit }) => (
-            <Form onSubmit={handleSubmit} autoComplete="off">
-              <Form.Input
-                placeholder="Title"
-                value={activity.title}
-                name="title"
-                onChange={handleChange}
-              />
-              <Form.TextArea
-                placeholder="Description"
-                value={activity.description}
-                name="description"
-                onChange={handleChange}
-              />
-              <Form.Input
-                placeholder="Category"
-                value={activity.category}
-                name="category"
-                onChange={handleChange}
-              />
-              <Form.Input
-                type="date"
-                placeholder="Date"
-                value={activity.date}
-                name="date"
-                onChange={handleChange}
-              />
-              <Form.Input
-                placeholder="City"
-                value={activity.city}
-                name="city"
-                onChange={handleChange}
-              />
-              <Form.Input
-                placeholder="Venue"
-                value={activity.venue}
-                name="venue"
-                onChange={handleChange}
-              />
+          {({ handleSubmit }) => (
+            <Form
+              onSubmit={handleSubmit}
+              autoComplete="off"
+              className="ui form"
+            >
+              <Field placeholder="Title" name="title" />
+              <Field placeholder="Description" name="description" />
+              <Field placeholder="Category" name="category" />
+              <Field type="date" placeholder="Date" name="date" />
+              <Field placeholder="City" name="city" />
+              <Field placeholder="Venue" name="venue" />
               <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
                 <Button
                   loading={loading}
