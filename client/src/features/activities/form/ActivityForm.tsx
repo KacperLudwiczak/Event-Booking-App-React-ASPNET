@@ -7,7 +7,7 @@ import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
-import MyTextAreaInput from "../../../app/common/form/MyTextArea";
+import MyTextArea from "../../../app/common/form/MyTextArea";
 
 const containerStyles = {
   display: "flex",
@@ -88,7 +88,7 @@ function ActivityForm() {
               className="ui form"
             >
               <MyTextInput placeholder="Title" name="title" />
-              <MyTextAreaInput rows={3} placeholder="Description" name="description" />
+              <MyTextArea rows={3} placeholder="Description" name="description" />
               <MyTextInput placeholder="Category" name="category" />
               <MyTextInput placeholder="Date" name="date" />
               <MyTextInput placeholder="City" name="city" />
