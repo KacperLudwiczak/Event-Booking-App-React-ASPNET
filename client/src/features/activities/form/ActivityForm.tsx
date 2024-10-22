@@ -4,8 +4,9 @@ import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { Link, useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import MyTextInput from "../../../app/common/form/MyTextInput";
 
 const containerStyles = {
   display: "flex",
@@ -43,13 +44,13 @@ function ActivityForm() {
   });
 
   const validationSchema = Yup.object({
-    title: Yup.string().required('The event title is required'),
-    category: Yup.string().required('The event category is required'),
-    description: Yup.string().required(),
-    date: Yup.string().required('Date is required').nullable(),
-    venue: Yup.string().required(),
-    city: Yup.string().required(),
-});
+    title: Yup.string().required("The event title is required"),
+    category: Yup.string().required("The event category is required"),
+    description: Yup.string().required("The event description is required"),
+    date: Yup.string().required("The event date is required").nullable(),
+    venue: Yup.string().required("The event venue is required"),
+    city: Yup.string().required("The event city is required"),
+  });
 
   useEffect(() => {
     if (id) loadActivity(id).then((activity) => setActivity(activity!));
@@ -85,12 +86,12 @@ function ActivityForm() {
               autoComplete="off"
               className="ui form"
             >
-              <Field placeholder="Title" name="title" />
-              <Field placeholder="Description" name="description" />
-              <Field placeholder="Category" name="category" />
-              <Field type="date" placeholder="Date" name="date" />
-              <Field placeholder="City" name="city" />
-              <Field placeholder="Venue" name="venue" />
+              <MyTextInput placeholder="Title" name="title" />
+              <MyTextInput placeholder="Description" name="description" />
+              <MyTextInput placeholder="Category" name="category" />
+              <MyTextInput placeholder="Date" name="date" />
+              <MyTextInput placeholder="City" name="city" />
+              <MyTextInput placeholder="Venue" name="venue" />
               <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
                 <Button
                   loading={loading}
