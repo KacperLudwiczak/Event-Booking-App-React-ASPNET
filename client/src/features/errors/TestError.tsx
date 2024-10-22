@@ -41,7 +41,7 @@ export default function TestErrors() {
     <>
       <Header
         as="h1"
-        content="Test Error component"
+        content="Test Errors"
         style={{ color: "#fff", marginBottom: "20px" }}
       />
       <Button

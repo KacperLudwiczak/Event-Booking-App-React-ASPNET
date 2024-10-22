@@ -7,6 +7,7 @@ function ServerError() {
     return (
         <Container>
             <Header as='h1' content='Server Error' style={{color: "#fff"}}/>
+            <Header as='h3' content={commonStore.error?.message} style={{color: "#fff"}}/>
             {commonStore.error?.details && (
                 <Item>
                     <Header as='h4' content='Stack trace' style={{color: "#fff"}}  />
