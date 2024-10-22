@@ -10,7 +10,12 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
+      <ToastContainer
+        position="bottom-right"
+        hideProgressBar
+        theme="light"
+        toastStyle={{ borderRadius: "25px", padding: "10px" }}
+      />
       {location.pathname === "/" ? (
         <HomePage />
       ) : (
