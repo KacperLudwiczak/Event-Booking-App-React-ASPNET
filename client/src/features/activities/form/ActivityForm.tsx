@@ -1,10 +1,10 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, ButtonGroup, Form, Segment } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
-import { v4 as uuid } from "uuid";
+import { Formik } from "formik";
 
 const containerStyles = {
   display: "flex",
@@ -22,14 +22,14 @@ const segmentStyles = {
 function ActivityForm() {
   const { activityStore } = useStore();
   const {
-    createActivity,
-    updateActivity,
+    // createActivity,
+    // updateActivity,
     loading,
     loadActivity,
     loadingInitial,
   } = activityStore;
   const { id } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [activity, setActivity] = useState({
     id: "",
@@ -45,87 +45,87 @@ function ActivityForm() {
     if (id) loadActivity(id).then((activity) => setActivity(activity!));
   }, [id, loadActivity]);
 
-  function handleSubmit() {
-    if (!activity.id) {
-      activity.id = uuid();
-      createActivity(activity).then(() =>
-        navigate(`/activities/${activity.id}`)
-      );
-    } else {
-      updateActivity(activity).then(() =>
-        navigate(`/activities/${activity.id}`)
-      );
-    }
-  }
-
-  function handleInputChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = event.target;
-    setActivity({ ...activity, [name]: value });
-  }
+  // function handleSubmit() {
+  //   if (!activity.id) {
+  //     activity.id = uuid();
+  //     createActivity(activity).then(() =>
+  //       navigate(`/activities/${activity.id}`)
+  //     );
+  //   } else {
+  //     updateActivity(activity).then(() =>
+  //       navigate(`/activities/${activity.id}`)
+  //     );
+  //   }
+  // }
 
   if (loadingInitial) return <LoadingComponent content="Loading activity..." />;
 
   return (
     <div style={containerStyles}>
       <Segment clearing style={segmentStyles}>
-        <Form onSubmit={handleSubmit} autoComplete="off">
-          <Form.Input
-            placeholder="Title"
-            value={activity.title}
-            name="title"
-            onChange={handleInputChange}
-          />
-          <Form.TextArea
-            placeholder="Description"
-            value={activity.description}
-            name="description"
-            onChange={handleInputChange}
-          />
-          <Form.Input
-            placeholder="Category"
-            value={activity.category}
-            name="category"
-            onChange={handleInputChange}
-          />
-          <Form.Input
-            type="date"
-            placeholder="Date"
-            value={activity.date}
-            name="date"
-            onChange={handleInputChange}
-          />
-          <Form.Input
-            placeholder="City"
-            value={activity.city}
-            name="city"
-            onChange={handleInputChange}
-          />
-          <Form.Input
-            placeholder="Venue"
-            value={activity.venue}
-            name="venue"
-            onChange={handleInputChange}
-          />
-          <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
-            <Button
-              loading={loading}
-              inverted
-              color="blue"
-              content="Submit"
-              style={{ marginRight: "10px", borderRadius: "25px" }}
-            />
-            <Button
-              inverted
-              as={Link}
-              to="/activities"
-              color="orange"
-              content="Cancel"
-              style={{ borderRadius: "25px" }}
-            />
-          </ButtonGroup>
-        </Form>
+        <Formik
+          initialValues={activity}
+          onSubmit={(values) => console.log(values)}
+        >
+          {({ values: activity, handleChange, handleSubmit }) => (
+            <Form onSubmit={handleSubmit} autoComplete="off">
+              <Form.Input
+                placeholder="Title"
+                value={activity.title}
+                name="title"
+                onChange={handleChange}
+              />
+              <Form.TextArea
+                placeholder="Description"
+                value={activity.description}
+                name="description"
+                onChange={handleChange}
+              />
+              <Form.Input
+                placeholder="Category"
+                value={activity.category}
+                name="category"
+                onChange={handleChange}
+              />
+              <Form.Input
+                type="date"
+                placeholder="Date"
+                value={activity.date}
+                name="date"
+                onChange={handleChange}
+              />
+              <Form.Input
+                placeholder="City"
+                value={activity.city}
+                name="city"
+                onChange={handleChange}
+              />
+              <Form.Input
+                placeholder="Venue"
+                value={activity.venue}
+                name="venue"
+                onChange={handleChange}
+              />
+              <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
+                <Button
+                  loading={loading}
+                  inverted
+                  color="blue"
+                  content="Submit"
+                  style={{ marginRight: "10px", borderRadius: "25px" }}
+                />
+                <Button
+                  inverted
+                  as={Link}
+                  to="/activities"
+                  color="orange"
+                  content="Cancel"
+                  style={{ borderRadius: "25px" }}
+                />
+              </ButtonGroup>
+            </Form>
+          )}
+        </Formik>
       </Segment>
     </div>
   );
