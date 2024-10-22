@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 import { Link, useParams } from "react-router-dom";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
 const containerStyles = {
   display: "flex",
@@ -41,6 +42,15 @@ function ActivityForm() {
     venue: "",
   });
 
+  const validationSchema = Yup.object({
+    title: Yup.string().required('The event title is required'),
+    category: Yup.string().required('The event category is required'),
+    description: Yup.string().required(),
+    date: Yup.string().required('Date is required').nullable(),
+    venue: Yup.string().required(),
+    city: Yup.string().required(),
+});
+
   useEffect(() => {
     if (id) loadActivity(id).then((activity) => setActivity(activity!));
   }, [id, loadActivity]);
@@ -65,6 +75,7 @@ function ActivityForm() {
       <Segment clearing style={segmentStyles}>
         <Formik
           enableReinitialize
+          validationSchema={validationSchema}
           initialValues={activity}
           onSubmit={(values) => console.log(values)}
         >
