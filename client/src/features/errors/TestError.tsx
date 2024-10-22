@@ -1,16 +1,7 @@
 import { useState } from "react";
-import { Button, Header, Segment } from "semantic-ui-react";
+import { Button, Header } from "semantic-ui-react";
 import axios from "axios";
 import ValidationError from "./ValidationError";
-
-const segmentStyles = {
-    borderRadius: "25px",
-    boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
-    overflow: "hidden",
-    padding: "15px",
-    border: "none",
-    marginBottom: "25px",
-  };
 
 
 export default function TestErrors() {
@@ -48,37 +39,47 @@ export default function TestErrors() {
 
   return (
     <>
-      <Header as="h1" content="Test Error component" style={{color: "#fff"}}/>
-      <Segment style={segmentStyles}>
-        <Button.Group widths="7">
-          <Button onClick={handleNotFound} content="Not Found" basic primary />
-          <Button
-            onClick={handleBadRequest}
-            content="Bad Request"
-            basic
-            primary
-          />
-          <Button
-            onClick={handleValidationError}
-            content="Validation Error"
-            basic
-            primary
-          />
-          <Button
-            onClick={handleServerError}
-            content="Server Error"
-            basic
-            primary
-          />
-          <Button
-            onClick={handleUnauthorised}
-            content="Unauthorised"
-            basic
-            primary
-          />
-          <Button onClick={handleBadGuid} content="Bad Guid" basic primary />
-        </Button.Group>
-      </Segment>
+      <Header
+        as="h1"
+        content="Test Error component"
+        style={{ color: "#fff", marginBottom: "20px" }}
+      />
+      <Button
+        inverted
+        onClick={handleNotFound}
+        content="Not Found"
+        style={{ borderRadius: "25px", marginRight: "20px" }}
+      />
+      <Button
+        inverted
+        onClick={handleBadRequest}
+        content="Bad Request"
+        style={{ borderRadius: "25px", marginRight: "20px" }}
+      />
+      <Button
+        inverted
+        onClick={handleValidationError}
+        content="Validation Error"
+        style={{ borderRadius: "25px", marginRight: "20px" }}
+      />
+      <Button
+        inverted
+        onClick={handleServerError}
+        content="Server Error"
+        style={{ borderRadius: "25px", marginRight: "20px" }}
+      />
+      <Button
+        inverted
+        onClick={handleUnauthorised}
+        content="Unauthorised"
+        style={{ borderRadius: "25px", marginRight: "20px" }}
+      />
+      <Button
+        inverted
+        onClick={handleBadGuid}
+        content="Bad Guid"
+        style={{ borderRadius: "25px", marginRight: "20px" }}
+      />
       {errors && <ValidationError errors={errors} />}
     </>
   );
