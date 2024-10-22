@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { Button, Header, Item, Segment, Image } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import { Link } from "react-router-dom";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -65,6 +66,8 @@ function ActivityDetailedHeader({ activity }: Props) {
             Cancel attendance
           </Button>
           <Button
+            as={Link}
+            to={`/manage/${activity.id}`}
             inverted
             color="blue"
             floated="right"

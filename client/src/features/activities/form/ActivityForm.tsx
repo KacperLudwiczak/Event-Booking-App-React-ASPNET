@@ -64,6 +64,7 @@ function ActivityForm() {
     <div style={containerStyles}>
       <Segment clearing style={segmentStyles}>
         <Formik
+          enableReinitialize
           initialValues={activity}
           onSubmit={(values) => console.log(values)}
         >
