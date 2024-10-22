@@ -11,6 +11,7 @@ import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import { categoryOptions } from "../../../app/common/options/categoryOptions";
 import MyDateInput from "../../../app/common/form/MyDateInput";
+import { Activity } from "../../../app/models/activity";
 
 const containerStyles = {
   display: "flex",
@@ -37,12 +38,12 @@ function ActivityForm() {
   const { id } = useParams();
   // const navigate = useNavigate();
 
-  const [activity, setActivity] = useState({
+  const [activity, setActivity] = useState<Activity>({
     id: "",
     title: "",
     category: "",
     description: "",
-    date: "",
+    date: null,
     city: "",
     venue: "",
   });
