@@ -22,12 +22,9 @@ export default class ActivityStore {
   }
 
   get groupedActivities(): [string, Activity[]][] {
-    const sortedActivities = Array.from(this.activityRegistry.values()).sort(
-      (a, b) => a.date!.getTime() - b.date!.getTime()
-    );
     return Object.entries(
-      sortedActivities.reduce((activities, activity) => {
-        const date = format(activity.date!, "dd MMM yyyy")
+      this.activitiesByDate.reduce((activities, activity) => {
+        const date = format(activity.date!, "dd MMM yyyy");
         activities[date] = activities[date]
           ? [...activities[date], activity]
           : [activity];
