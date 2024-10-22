@@ -15,13 +15,19 @@ export default function NavBar() {
           name="Activities"
           style={{ fontSize: "1em" }}
         />
+        <Menu.Item
+          as={NavLink}
+          to="/errors"
+          name="Errors"
+          style={{ fontSize: "1em" }}
+        />
         <Menu.Item>
           <Button
             as={Link}
             to="/createActivity"
             inverted
             content="Create Activity"
-            style={{borderRadius: "25px"}}
+            style={{ borderRadius: "25px" }}
           />
         </Menu.Item>
       </Container>
