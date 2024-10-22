@@ -88,7 +88,11 @@ function ActivityForm() {
               className="ui form"
             >
               <MyTextInput placeholder="Title" name="title" />
-              <MyTextArea rows={3} placeholder="Description" name="description" />
+              <MyTextArea
+                rows={3}
+                placeholder="Description"
+                name="description"
+              />
               <MyTextInput placeholder="Category" name="category" />
               <MyTextInput placeholder="Date" name="date" />
               <MyTextInput placeholder="City" name="city" />
