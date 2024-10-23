@@ -17,7 +17,7 @@ namespace API.Extensions
                 options.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<DataContext>();
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("iXPAiRus3HPg5MakRn1dZ8Pwfy2FXgYfKwoCo5fBjehf2lOBT8kgdLpOjNOcDBFD"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
