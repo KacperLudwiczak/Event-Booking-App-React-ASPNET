@@ -3,6 +3,7 @@
         "ASPNETCORE",
         "datepicker",
         "Formik",
+        "Hmac",
         "Mediat",
         "notaguid",
         "occured",
