@@ -7,7 +7,8 @@ const modalStyles = {
   padding: "25px",
   borderRadius: "25px",
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
-  width: "40%"
+  width: "40%",
+  height: "60%"
 };
 
 function ModalContainer() {
