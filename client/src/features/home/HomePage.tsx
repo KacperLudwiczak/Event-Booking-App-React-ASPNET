@@ -17,12 +17,12 @@ export default function HomePage() {
         <Header as="h2" inverted content="Welcome to Reactivities" />
         <Button
           as={Link}
-          to="/activities"
+          to="/login"
           size="huge"
           inverted
           style={{ borderRadius: "25px" }}
         >
-          Take me to the activities!
+          Login
         </Button>
       </Container>
     </Segment>
