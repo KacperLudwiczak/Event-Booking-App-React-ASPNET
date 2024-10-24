@@ -55,7 +55,7 @@ function NavBar() {
             text={user?.displayName}
             direction="left"
             icon="ellipsis vertical"
-            style={{ fontSize: "20px" }}
+            style={{ fontSize: "20px", paddingLeft: "6px" }}
           >
             <Dropdown.Menu style={dropdownMenuStyles}>
               <Dropdown.Item
