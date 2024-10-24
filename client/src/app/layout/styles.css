@@ -6,6 +6,9 @@ body {
     rgb(215, 231, 250) 100%
   ) !important;
 }
+
+
+/* Navbar styles*/
 .ui.inverted.top.fixed.menu {
   background: linear-gradient(
     90deg,
@@ -14,17 +17,20 @@ body {
     rgb(215, 231, 250, 0.8) 100%
   ) !important;
 }
+/* End navbar styles*/
 
-/*calendar styles*/
+
+/* Calendar styles*/
 .react-calendar {
   width: 100%;
   border: none;
   border-radius: 25px;
   font-weight: bold;
 }
-/*end calendar styles*/
+/* End calendar styles*/
 
-/*home page styles*/
+
+/* Home page styles*/
 .masthead {
   display: flex;
   align-items: center;
@@ -48,9 +54,10 @@ body {
   font-size: 1.7em;
   font-weight: normal;
 }
-/*end home page styles*/
+/* End home page styles*/
 
-/*react date picker styles*/
+
+/* React date picker styles*/
 .react-datepicker-wrapper {
   width: 100%;
 }
@@ -67,4 +74,19 @@ body {
   border-radius: 25px;
   width: 250px
 } */
-/*end react date picker styles*/
+/* End react date picker styles*/
+
+
+/* Modal styles */
+.ui.dimmer {
+  background: linear-gradient(
+    90deg,
+    rgb(138, 192, 253) 0%,
+    rgba(186, 215, 248) 51%,
+    rgb(215, 231, 250) 100%
+  ) !important;
+}
+.ui.dimmer.visible::before {
+  filter: blur(5px); 
+}
+/* End modal styles*/
