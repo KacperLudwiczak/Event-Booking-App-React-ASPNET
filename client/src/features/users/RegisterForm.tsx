@@ -3,43 +3,71 @@ import { observer } from "mobx-react-lite";
 import { Button, Header } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useStore } from "../../app/stores/store";
-import * as Yup from 'yup';
-import ValidationError from "../errors/ValidationError";
+import * as Yup from "yup";
 
 function RegisterForm() {
-    const { userStore } = useStore();
-    return (
-        <Formik
-            initialValues={{ displayName: '', username: '', email: '', password: '', error: null }}
-            onSubmit={(values, { setErrors }) =>
-                userStore.register(values).catch(error => setErrors({ error: error }))}
-            validationSchema={Yup.object({
-                displayName: Yup.string().required(),
-                username: Yup.string().required(),
-                email: Yup.string().required(),
-                password: Yup.string().required(),
-            })}
+  const { userStore } = useStore();
+
+  return (
+    <Formik
+      initialValues={{
+        displayName: "",
+        username: "",
+        email: "",
+        password: "",
+        error: null,
+      }}
+      onSubmit={(values, { setErrors }) =>
+        userStore.register(values).catch((error) => setErrors({ error: error }))
+      }
+      validationSchema={Yup.object({
+        displayName: Yup.string().required(),
+        username: Yup.string().required(),
+        email: Yup.string().required(),
+        password: Yup.string().required(),
+      })}
+    >
+      {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
+        <Form
+          className="ui form error"
+          onSubmit={handleSubmit}
+          autoComplete="off"
         >
-            {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
-                <Form className='ui form error' onSubmit={handleSubmit} autoComplete='off'>
-                    <Header as='h2' content='Sign up to Reactivities' color="teal" textAlign="center" />
-                    <MyTextInput placeholder="Display Name" name='displayName' />
-                    <MyTextInput placeholder="Username" name='username' />
-                    <MyTextInput placeholder="Email" name='email' />
-                    <MyTextInput placeholder="Password" name='password' type='password' />
-                    <ErrorMessage name='error' render={() => 
-                        <ValidationError errors={errors.error} />} />
-                    <Button
-                        disabled={!isValid || !dirty || isSubmitting} 
-                        loading={isSubmitting} 
-                        positive content='Register' 
-                        type="submit" fluid 
-                    />
-                </Form>
+          <Header
+            as="h2"
+            content="Sign up to Reactivities"
+            color="teal"
+            textAlign="center"
+          />
+          <MyTextInput placeholder="Display Name" name="displayName" />
+          <MyTextInput placeholder="Username" name="username" />
+          <MyTextInput placeholder="Email" name="email" />
+          <MyTextInput placeholder="Password" name="password" type="password" />
+          <ErrorMessage
+            name="error"
+            render={() => (
+              <span style={{ color: "#9f3a38", fontSize: "12px" }}>
+                {errors.error}
+              </span>
             )}
-        </Formik>
-    )
+          />
+          <div style={{ marginTop: "25px" }}>
+            <Button
+              disabled={!isValid || !dirty || isSubmitting}
+              loading={isSubmitting}
+              inverted
+              content="Register"
+              type="submit"
+              fluid
+              color="blue"
+              style={{ borderRadius: "25px" }}
+            />
+          </div>
+        </Form>
+      )}
+    </Formik>
+  );
 }
 
-const ObservedRegisterForm= observer(RegisterForm);
+const ObservedRegisterForm = observer(RegisterForm);
 export default ObservedRegisterForm;
