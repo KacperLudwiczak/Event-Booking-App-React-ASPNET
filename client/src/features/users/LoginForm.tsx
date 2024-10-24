@@ -1,6 +1,6 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
-import { Button, Header, Label } from "semantic-ui-react";
+import { Button, Header } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useStore } from "../../app/stores/store";
 
@@ -34,7 +34,7 @@ function LoginForm() {
             <Header
               content="Login to Reactivities"
               textAlign="center"
-              style={{ fontSize: "40px", color: "#fff", margin: "30px" }}
+              style={{ fontSize: "40px", color: "#fff", padding: "30px" }}
             />
             <MyTextInput placeholder="Email" name="email" />
             <MyTextInput
@@ -45,22 +45,22 @@ function LoginForm() {
             <ErrorMessage
               name="error"
               render={() => (
-                <Label
-                  style={{ marginBottom: 10 }}
-                  basic
-                  color="red"
-                  content={errors.error}
-                />
+                <span
+                  style={{ color: "#9f3a38", fontSize: "12px" }}
+                >
+                  {errors.error}
+                </span>
               )}
             />
-            <Button
+            <div style={{marginTop: "25px"}}><Button
               loading={isSubmitting}
               inverted
               content="Login"
               type="submit"
               fluid
               style={{ borderRadius: "25px" }}
-            />
+            /></div>
+            
           </Form>
         )}
       </Formik>
