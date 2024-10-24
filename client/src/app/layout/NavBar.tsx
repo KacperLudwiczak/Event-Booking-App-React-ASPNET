@@ -64,7 +64,13 @@ function NavBar() {
                 text="My Profile"
                 icon="user"
               />
-              <Dropdown.Item onClick={logout} text="Logout" icon="power" />
+              <Dropdown.Item
+                onClick={() => {
+                  logout();
+                }}
+                text="Logout"
+                icon="power"
+              />
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Item>
