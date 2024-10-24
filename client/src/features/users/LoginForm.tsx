@@ -2,6 +2,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
 import { Button, Header, Label } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
+import { useStore } from "../../app/stores/store";
 
 const containerStyles = {
   display: "flex",
@@ -11,11 +12,17 @@ const containerStyles = {
 };
 
 function LoginForm() {
+  const { userStore } = useStore();
+
   return (
     <div style={containerStyles}>
       <Formik
         initialValues={{ email: "", password: "", error: null }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { setErrors }) =>
+          userStore
+            .login(values)
+            .catch(() => setErrors({ error: "Invalid email or password" }))
+        }
       >
         {({ handleSubmit, isSubmitting, errors }) => (
           <Form
@@ -30,7 +37,7 @@ function LoginForm() {
               style={{ fontSize: "40px", color: "#fff", margin: "30px" }}
             />
             <MyTextInput placeholder="Email" name="email" />
-            <MyTextInput placeholder="Password" name="password" />
+            <MyTextInput placeholder="Password" name="password"/>
             <ErrorMessage
               name="error"
               render={() => (
