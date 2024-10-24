@@ -2,7 +2,7 @@ import { Item, Message } from "semantic-ui-react";
 
 const itemStyles = {
   padding: "25px",
-  color: "#fff",
+  color: "#3ac0ff",
   fontSize: "20px",
 };
 

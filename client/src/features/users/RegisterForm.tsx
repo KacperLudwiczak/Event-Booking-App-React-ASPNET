@@ -4,6 +4,7 @@ import { Button, Header } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useStore } from "../../app/stores/store";
 import * as Yup from "yup";
+import ValidationError from "../errors/ValidationError";
 
 function RegisterForm() {
   const { userStore } = useStore();
@@ -45,9 +46,7 @@ function RegisterForm() {
           <ErrorMessage
             name="error"
             render={() => (
-              <span style={{ color: "#9f3a38", fontSize: "12px" }}>
-                {errors.error}
-              </span>
+             <ValidationError errors={errors.error as unknown as string[]}/>
             )}
           />
           <div style={{ marginTop: "25px" }}>

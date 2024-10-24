@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { Button, Header } from "semantic-ui-react";
+import { Button, Header , Segment} from "semantic-ui-react";
 import axios from "axios";
 import ValidationError from "./ValidationError";
 
+const segmentStyles = {
+  borderRadius: "25px",
+  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
+  overflow: "hidden",
+  padding: "15px",
+  border: "none",
+  marginBottom: "25px",
+};
 
 export default function TestErrors() {
   const baseUrl = "http://localhost:5000/api/";
@@ -80,7 +88,7 @@ export default function TestErrors() {
         content="Bad Guid"
         style={{ borderRadius: "25px", marginRight: "20px" }}
       />
-      {errors && <ValidationError errors={errors} />}
+      {errors && <Segment style={segmentStyles}><ValidationError errors={errors} /></Segment>}
     </>
   );
 }
