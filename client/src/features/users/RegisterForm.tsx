@@ -21,10 +21,10 @@ function RegisterForm() {
         userStore.register(values).catch((error) => setErrors({ error: error }))
       }
       validationSchema={Yup.object({
-        displayName: Yup.string().required(),
-        username: Yup.string().required(),
-        email: Yup.string().required(),
-        password: Yup.string().required(),
+        displayName: Yup.string().required("The name is required"),
+        username: Yup.string().required("The user name is required"),
+        email: Yup.string().required("The email is required"),
+        password: Yup.string().required("The password is required"),
       })}
     >
       {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
@@ -34,10 +34,9 @@ function RegisterForm() {
           autoComplete="off"
         >
           <Header
-            as="h2"
             content="Sign up to Reactivities"
-            color="teal"
             textAlign="center"
+            style={{ fontSize: "40px", color: "#3ac0ff", padding: "30px" }}
           />
           <MyTextInput placeholder="Display Name" name="displayName" />
           <MyTextInput placeholder="Username" name="username" />
