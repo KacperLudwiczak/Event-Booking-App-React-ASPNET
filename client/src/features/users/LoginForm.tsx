@@ -37,7 +37,11 @@ function LoginForm() {
               style={{ fontSize: "40px", color: "#fff", margin: "30px" }}
             />
             <MyTextInput placeholder="Email" name="email" />
-            <MyTextInput placeholder="Password" name="password"/>
+            <MyTextInput
+              placeholder="Password"
+              name="password"
+              type="password"
+            />
             <ErrorMessage
               name="error"
               render={() => (
