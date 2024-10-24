@@ -38,7 +38,7 @@ function HomePage() {
               onClick={() => modalStore.openModal(<LoginForm />)}
               size="huge"
               inverted
-              style={{ borderRadius: "25px" }}
+              style={{ borderRadius: "25px", margin: "10px" }}
             >
               Login
             </Button>
@@ -46,7 +46,7 @@ function HomePage() {
               onClick={() => modalStore.openModal(<h1>Register</h1>)}
               size="huge"
               inverted
-              style={{ borderRadius: "25px" }}
+              style={{ borderRadius: "25px", margin: "10px" }}
             >
               Register
             </Button>
