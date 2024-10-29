@@ -10,8 +10,12 @@ namespace Application.Core
         {
             CreateMap<Activity, Activity>();
             CreateMap<Activity, ActivityDto>()
-                  .ForMember(destination => destination.HostUsername, options => options.MapFrom(source => source.Attendees
+                .ForMember(destination => destination.HostUsername, options => options.MapFrom(source => source.Attendees
                     .FirstOrDefault(item => item.IsHost).AppUser.UserName));
+            CreateMap<ActivityAttendee, Profiles.Profile>()
+                .ForMember(destination => destination.DisplayName, options => options.MapFrom(source => source.AppUser.DisplayName))
+                .ForMember(destination => destination.Username, options => options.MapFrom(source => source.AppUser.UserName))
+                .ForMember(destination => destination.Bio, options => options.MapFrom(source => source.AppUser.Bio));
         }
     }
 }
