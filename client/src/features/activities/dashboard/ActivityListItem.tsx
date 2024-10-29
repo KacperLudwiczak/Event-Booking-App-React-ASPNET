@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Item, Button, Icon } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { format } from "date-fns";
+import ActivityListItemAttendee from "./ActivityListItemAttendee";
 
 interface Props {
   activity: Activity;
@@ -28,7 +29,9 @@ export default function ActivityListItem({ activity }: Props) {
           <Icon name="marker" /> {activity.venue}
         </span>
 
-        <h5 style={{ margin: "15px 10px" }}>Attendees go here</h5>
+        <h5 style={{ margin: "15px 10px" }}>
+          <ActivityListItemAttendee />
+        </h5>
         <h5 style={{ margin: "15px 10px" }}>{activity.description}</h5>
         <Item.Extra>
           <Button
