@@ -48,7 +48,13 @@ function ActivityDetailedHeader({ activity }: Props) {
                   />
                   <p>{format(activity.date!, "dd MMM yyyy")}</p>
                   <p>
-                    Hosted by <strong>User</strong>
+                    Hosted by
+                    <Link
+                      to={`/profiles/${activity.host?.username}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <strong> {activity.host?.displayName}</strong>
+                    </Link>
                   </p>
                 </Item.Content>
               </Item>
