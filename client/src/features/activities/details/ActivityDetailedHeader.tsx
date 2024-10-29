@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { Button, Header, Item, Segment, Image } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { Link } from "react-router-dom";
+import { useStore } from "../../../app/stores/store";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -28,6 +29,10 @@ interface Props {
 }
 
 function ActivityDetailedHeader({ activity }: Props) {
+  const {
+    activityStore: { updateAttendance, loading },
+  } = useStore();
+
   return (
     <>
       <Item style={{ marginBottom: "25px" }}>
@@ -73,12 +78,20 @@ function ActivityDetailedHeader({ activity }: Props) {
               Manage Event
             </Button>
           ) : activity.isGoing ? (
-            <Button inverted color="orange" style={{ borderRadius: "25px" }}>
+            <Button
+              inverted
+              onClick={updateAttendance}
+              loading={loading}
+              color="orange"
+              style={{ borderRadius: "25px" }}
+            >
               Cancel attendance
             </Button>
           ) : (
             <Button
               inverted
+              onClick={updateAttendance}
+              loading={loading}
               color="blue"
               style={{ marginRight: "5px", borderRadius: "25px" }}
             >
