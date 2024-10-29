@@ -56,26 +56,29 @@ function ActivityDetailedHeader({ activity }: Props) {
           </Segment>
         </Segment>
         <Item clearing attached="bottom" style={{ margin: "15px 0px" }}>
-          <Button
-            inverted
-            color="blue"
-            style={{ marginRight: "5px", borderRadius: "25px" }}
-          >
-            Join Activity
-          </Button>
-          <Button inverted color="orange" style={{ borderRadius: "25px" }}>
-            Cancel attendance
-          </Button>
-          <Button
-            as={Link}
-            to={`/manage/${activity.id}`}
-            inverted
-            color="blue"
-            floated="right"
-            style={{ borderRadius: "25px" }}
-          >
-            Manage Event
-          </Button>
+          {activity.isHost ? (
+            <Button
+              as={Link}
+              to={`/manage/${activity.id}`}
+              inverted
+              color="blue"
+              style={{ borderRadius: "25px" }}
+            >
+              Manage Event
+            </Button>
+          ) : activity.isGoing ? (
+            <Button inverted color="orange" style={{ borderRadius: "25px" }}>
+              Cancel attendance
+            </Button>
+          ) : (
+            <Button
+              inverted
+              color="blue"
+              style={{ marginRight: "5px", borderRadius: "25px" }}
+            >
+              Join Activity
+            </Button>
+          )}
         </Item>
       </Item>
     </>
