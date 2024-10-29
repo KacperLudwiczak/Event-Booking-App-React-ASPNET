@@ -1,7 +1,7 @@
 import { Segment, List, Label, Item, Image, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { Profile } from "../../../app/models/profile";
+import { Activity } from "../../../app/models/activity";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -14,10 +14,11 @@ const segmentStyles = {
 };
 
 interface Props {
-  attendees: Profile[];
+  activity: Activity;
 }
 
-function ActivityDetailedSidebar({ attendees }: Props) {
+function ActivityDetailedSidebar({ activity: { attendees, host } }: Props) {
+  if (!attendees) return null;
   return (
     <>
       <Segment
@@ -36,9 +37,11 @@ function ActivityDetailedSidebar({ attendees }: Props) {
         <List relaxed divided>
           {attendees.map((attendee) => (
             <Item style={{ position: "relative" }} key={attendee.username}>
-              <Label style={{ position: "absolute" }} ribbon="right">
-                Host
-              </Label>
+              {attendee.username === host?.username && (
+                <Label style={{ position: "absolute" }} ribbon="right">
+                  Host
+                </Label>
+              )}
               <Image
                 size="tiny"
                 circular
