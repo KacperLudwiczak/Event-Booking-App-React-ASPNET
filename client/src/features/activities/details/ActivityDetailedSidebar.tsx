@@ -1,6 +1,7 @@
 import { Segment, List, Label, Item, Image, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { Profile } from "../../../app/models/profile";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -12,7 +13,11 @@ const segmentStyles = {
   marginBottom: "25px",
 };
 
-function ActivityDetailedSidebar() {
+interface Props {
+  attendees: Profile[];
+}
+
+function ActivityDetailedSidebar({ attendees }: Props) {
   return (
     <>
       <Segment
@@ -22,58 +27,41 @@ function ActivityDetailedSidebar() {
         inverted
         style={segmentStyles}
       >
-        <Header>3 People Going</Header>
+        <Header>
+          {attendees.length} {attendees.length === 1 ? "Person" : "People"}{" "}
+          going
+        </Header>
       </Segment>
       <Item style={{ padding: "10px" }}>
         <List relaxed divided>
-          <Item style={{ position: "relative" }}>
-            <Label style={{ position: "absolute" }} ribbon="right">
-              Host
-            </Label>
-            <Image size="tiny" circular src={"/assets/user.png"} />
-            <Item.Content
-              verticalAlign="middle"
-              style={{ marginLeft: "10px", marginTop: "10px" }}
-            >
-              <Item.Header as="h3">
-                <Link to={`#`} style={{ color: "#54c8ff" }}>
-                  Bob
-                </Link>
-              </Item.Header>
-              <Item.Extra style={{ color: "grey", fontSize: "12px" }}>
-                Following
-              </Item.Extra>
-            </Item.Content>
-          </Item>
-          <Item style={{ position: "relative" }}>
-            <Image size="tiny" circular src={"/assets/user.png"} />
-            <Item.Content
-              verticalAlign="middle"
-              style={{ marginLeft: "10px", marginTop: "10px" }}
-            >
-              <Item.Header as="h3">
-                <Link to={`#`} style={{ color: "#54c8ff" }}>
-                  Tom
-                </Link>
-              </Item.Header>
-              <Item.Extra style={{ color: "grey", fontSize: "12px" }}>
-                Following
-              </Item.Extra>
-            </Item.Content>
-          </Item>
-          <Item style={{ position: "relative" }}>
-            <Image size="tiny" circular src={"/assets/user.png"} />
-            <Item.Content
-              verticalAlign="middle"
-              style={{ marginLeft: "10px", marginTop: "10px" }}
-            >
-              <Item.Header as="h3">
-                <Link to={`#`} style={{ color: "#54c8ff" }}>
-                  Sally
-                </Link>
-              </Item.Header>
-            </Item.Content>
-          </Item>
+          {attendees.map((attendee) => (
+            <Item style={{ position: "relative" }} key={attendee.username}>
+              <Label style={{ position: "absolute" }} ribbon="right">
+                Host
+              </Label>
+              <Image
+                size="tiny"
+                circular
+                src={attendee.image || "/assets/user.png"}
+              />
+              <Item.Content
+                verticalAlign="middle"
+                style={{ marginLeft: "10px", marginTop: "10px" }}
+              >
+                <Item.Header as="h3">
+                  <Link
+                    to={`/profiles/${attendee.username}`}
+                    style={{ color: "#54c8ff" }}
+                  >
+                    {attendee.displayName}
+                  </Link>
+                </Item.Header>
+                <Item.Extra style={{ color: "grey", fontSize: "12px" }}>
+                  Following
+                </Item.Extra>
+              </Item.Content>
+            </Item>
+          ))}
         </List>
       </Item>
     </>

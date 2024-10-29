@@ -14,7 +14,7 @@ const gridStyles = {
   borderRadius: "25px",
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
   overflow: "hidden",
-  padding: "15px"
+  padding: "15px",
 };
 
 function ActivityDetails() {
@@ -40,7 +40,7 @@ function ActivityDetails() {
         <ActivityDetailedChat />
       </Grid.Column>
       <Grid.Column width="6">
-        <ActivityDetailedSidebar />
+        <ActivityDetailedSidebar attendees={activity.attendees!} />
       </Grid.Column>
     </Grid>
   );
