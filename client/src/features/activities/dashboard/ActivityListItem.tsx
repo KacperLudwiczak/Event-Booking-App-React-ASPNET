@@ -30,7 +30,7 @@ export default function ActivityListItem({ activity }: Props) {
         </span>
 
         <h5 style={{ margin: "15px 10px" }}>
-          <ActivityListItemAttendee />
+          <ActivityListItemAttendee attendees={activity.attendees!}/>
         </h5>
         <h5 style={{ margin: "15px 10px" }}>{activity.description}</h5>
         <Item.Extra>

@@ -1,19 +1,28 @@
 import { Image, List } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
+import { Profile } from "../../../app/models/profile";
 
-function ActivityListItemAttendee() {
+interface Props {
+  attendees: Profile[];
+}
+
+function ActivityListItemAttendee({ attendees }: Props) {
   return (
     <List horizontal>
-      <List.Item as={Link}>
-        <Image size="mini" circular src={`/assets/user.png`} />
-      </List.Item>
-      <List.Item as={Link}>
-        <Image size="mini" circular src={`/assets/user.png`} />
-      </List.Item>
-      <List.Item as={Link}>
-        <Image size="mini" circular src={`/assets/user.png`} />
-      </List.Item>
+      {attendees.map((attendee) => (
+        <List.Item
+          key={attendee.username}
+          as={Link}
+          to={`/profile/${attendee.username}`}
+        >
+          <Image
+            size="mini"
+            circular
+            src={attendee.image || `/assets/user.png`}
+          />
+        </List.Item>
+      ))}
     </List>
   );
 }
