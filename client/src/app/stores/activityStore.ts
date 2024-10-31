@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { Activity } from "../models/activity";
+import { Activity, ActivityFormValues } from "../models/activity";
 import agent from "../api/agent";
-import { v4 as uuid } from "uuid";
 import { format } from "date-fns";
 import { store } from "./store";
 import { Profile } from "../models/profile";
@@ -92,20 +91,17 @@ export default class ActivityStore {
     this.loadingInitial = state;
   };
 
-  createActivity = async (activity: Activity) => {
-    this.loading = true;
-    activity.id = uuid();
+  createActivity = async (activity: ActivityFormValues) => {
+    const user = store.userStore!.user;
+    const profile = new Profile(user!);
     try {
-      await agent.Activities.create(activity);
-      runInAction(() => {
-        this.activityRegistry.set(activity.id, activity);
-        this.selectedActivity = activity;
-        this.editMode = false;
-        this.loading = false;
-      });
+      const newActivity = new Activity(activity);
+      newActivity.hostUsername = user!.username;
+      newActivity.attendees = [profile];
+      this.setActivity(newActivity);
+      runInAction(() => this.selectedActivity = newActivity);
     } catch (error) {
       console.log(error);
-      runInAction(() => (this.loading = false));
     }
   };
 
