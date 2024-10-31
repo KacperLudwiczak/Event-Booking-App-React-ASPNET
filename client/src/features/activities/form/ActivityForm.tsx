@@ -11,7 +11,7 @@ import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import { categoryOptions } from "../../../app/common/options/categoryOptions";
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { Activity, ActivityFormValues } from "../../../app/models/activity";
+import { ActivityFormValues } from "../../../app/models/activity";
 import { v4 as uuid } from "uuid";
 
 const containerStyles = {
@@ -29,17 +29,14 @@ const segmentStyles = {
 
 function ActivityForm() {
   const { activityStore } = useStore();
-  const {
-    createActivity,
-    updateActivity,
-    loading,
-    loadActivity,
-    loadingInitial,
-  } = activityStore;
+  const { createActivity, updateActivity, loadActivity, loadingInitial } =
+    activityStore;
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [activity, setActivity] = useState<ActivityFormValues>(new ActivityFormValues());
+  const [activity, setActivity] = useState<ActivityFormValues>(
+    new ActivityFormValues()
+  );
 
   const validationSchema = Yup.object({
     title: Yup.string().required("The event title is required"),
@@ -51,7 +48,10 @@ function ActivityForm() {
   });
 
   useEffect(() => {
-    if (id) loadActivity(id).then((activity) => setActivity(new ActivityFormValues(activity)));
+    if (id)
+      loadActivity(id).then((activity) =>
+        setActivity(new ActivityFormValues(activity))
+      );
   }, [id, loadActivity]);
 
   function handleFormSubmit(activity: ActivityFormValues) {
@@ -75,7 +75,7 @@ function ActivityForm() {
   return (
     <div style={containerStyles}>
       <Segment clearing style={segmentStyles}>
-        <Header content="Activity Details" sub style={{color: "#54c8ff"}}  />
+        <Header content="Activity Details" sub style={{ color: "#54c8ff" }} />
         <Formik
           enableReinitialize
           validationSchema={validationSchema}
@@ -107,14 +107,18 @@ function ActivityForm() {
                 dateFormat="MMMM d, yyyy h:mm aa"
               />
 
-              <Header content="Location Details" sub style={{color: "#54c8ff"}} />
+              <Header
+                content="Location Details"
+                sub
+                style={{ color: "#54c8ff" }}
+              />
               <MyTextInput placeholder="City" name="city" />
               <MyTextInput placeholder="Venue" name="venue" />
 
               <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
                 <Button
                   disabled={isSubmitting || !dirty || !isValid}
-                  loading={loading}
+                  loading={isSubmitting}
                   inverted
                   color="blue"
                   content="Submit"
