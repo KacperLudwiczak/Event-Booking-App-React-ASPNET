@@ -9,6 +9,22 @@ const descriptionContainerStyles = {
   display: "flex",
   alignItems: "center",
 };
+const labelHostStyles = {
+  color: "#54c8ff",
+  borderColor: "#54c8ff",
+  borderRadius: "25px",
+};
+const labelGoingStyles = {
+  marginLeft: "8px",
+  color: "#3ff169",
+  borderColor: "#3ff169",
+  borderRadius: "25px",
+};
+const labelCancelledStyles = {
+  marginLeft: "8px",
+  textAlign: "center",
+  borderRadius: "25px",
+};
 
 interface Props {
   activity: Activity;
@@ -18,14 +34,6 @@ export default function ActivityListItem({ activity }: Props) {
   return (
     <Item style={{ marginBottom: "5px" }}>
       <Item.Content>
-        {activity.isCancelled && (
-          <Label
-            attached="top"
-            color="red"
-            content="Cancelled"
-            style={{ textAlign: "center", borderRadius: "25px" }}
-          />
-        )}
         <Item.Group>
           <Item>
             <Item.Image size="tiny" circular src="/assets/user.png" />
@@ -37,25 +45,22 @@ export default function ActivityListItem({ activity }: Props) {
                 </Item.Description>
                 {activity.isHost && (
                   <Item.Description style={{ marginLeft: "8px" }}>
-                    <Label
-                      basic
-                      color="orange"
-                      style={{ borderRadius: "25px" }}
-                    >
+                    <Label basic style={labelHostStyles}>
                       You are hosting this activity!
                     </Label>
                   </Item.Description>
                 )}
                 {activity.isGoing && !activity.isHost && (
                   <Item.Description>
-                    <Label
-                      basic
-                      color="green"
-                      style={{ marginLeft: "8px", borderRadius: "25px" }}
-                    >
+                    <Label basic style={labelGoingStyles}>
                       You are going to this activity!
                     </Label>
                   </Item.Description>
+                )}
+                {activity.isCancelled && (
+                  <Label basic color="orange" style={labelCancelledStyles}>
+                    Cancelled
+                  </Label>
                 )}
               </div>
             </Item.Content>
