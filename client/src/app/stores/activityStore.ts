@@ -105,19 +105,18 @@ export default class ActivityStore {
     }
   };
 
-  updateActivity = async (activity: Activity) => {
-    this.loading = true;
+  updateActivity = async (activity: ActivityFormValues) => {
     try {
       await agent.Activities.update(activity);
       runInAction(() => {
-        this.activityRegistry.set(activity.id, activity);
-        this.selectedActivity = activity;
-        this.editMode = false;
-        this.loading = false;
+        if (activity.id) {
+          const updatedActivity = { ...this.getActivity(activity.id), ...activity };
+          this.activityRegistry.set(activity.id, updatedActivity as Activity);
+          this.selectedActivity = updatedActivity as Activity;
+      }
       });
     } catch (error) {
       console.log(error);
-      runInAction(() => (this.loading = false));
     }
   };
 
