@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import { Profile } from "../../../app/models/profile";
 import ProfileCard from "../../profiles/ProfileCard";
 
+const popupStyles = {
+  borderRadius: "25px",
+  padding: "0",
+  backgroundColor: "transparent",
+  boxShadow: "none",
+  border: "none",
+};
+
 interface Props {
   attendees: Profile[];
 }
@@ -14,7 +22,10 @@ function ActivityListItemAttendee({ attendees }: Props) {
       {attendees.map((attendee) => (
         <Popup
           hoverable
+          basic
           key={attendee.username}
+          style={popupStyles}
+          position="top center"
           trigger={
             <List.Item as={Link} to={`/profile/${attendee.username}`}>
               <Image
