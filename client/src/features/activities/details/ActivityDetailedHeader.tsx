@@ -13,6 +13,12 @@ const segmentStyles = {
   padding: "0",
   border: "none",
 };
+const labelStyle = {
+  position: "absolute",
+  zIndex: 1000,
+  left: -1,
+  top: 50,
+};
 const activityImageStyle = {
   filter: "brightness(30%)",
 };
@@ -37,21 +43,12 @@ function ActivityDetailedHeader({ activity }: Props) {
   return (
     <>
       <Item style={{ marginBottom: "25px" }}>
+        {activity.isCancelled && (
+          <Label style={labelStyle} color="red" ribbon>
+            Cancelled
+          </Label>
+        )}
         <Segment basic attached="top" style={segmentStyles}>
-          {activity.isCancelled && (
-            <Label
-              style={{
-                position: "absolute",
-                zIndex: 1000,
-                left: -1,
-                top: 20,
-              }}
-              color="red"
-              ribbon
-            >
-              Cancelled
-            </Label>
-          )}
           <Image
             src={`/assets/categoryImages/${activity.category}.jpg`}
             fluid
