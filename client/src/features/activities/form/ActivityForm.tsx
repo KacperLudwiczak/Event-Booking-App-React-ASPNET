@@ -61,7 +61,7 @@ function ActivityForm() {
         id: uuid(),
       };
       createActivity(newActivity).then(() =>
-        navigate(`/activities/${activity.id}`)
+        navigate(`/activities/${newActivity.id}`)
       );
     } else {
       updateActivity(activity).then(() =>
@@ -117,6 +117,7 @@ function ActivityForm() {
 
               <ButtonGroup widths="2" style={{ marginTop: "10px" }}>
                 <Button
+                  type="submit"
                   disabled={isSubmitting || !dirty || !isValid}
                   loading={isSubmitting}
                   inverted
@@ -125,6 +126,7 @@ function ActivityForm() {
                   style={{ marginRight: "10px", borderRadius: "25px" }}
                 />
                 <Button
+                  type="button"
                   inverted
                   as={Link}
                   to="/activities"
