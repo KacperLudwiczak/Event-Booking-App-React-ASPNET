@@ -36,7 +36,12 @@ export default function ActivityListItem({ activity }: Props) {
       <Item.Content>
         <Item.Group>
           <Item>
-            <Item.Image size="tiny" circular src="/assets/user.png" />
+            <Item.Image
+              style={{ margin: "5px" }}
+              size="tiny"
+              circular
+              src="/assets/user.png"
+            />
             <Item.Content style={{ marginTop: "20px" }}>
               <Item.Header as="a">{activity.title}</Item.Header>
               <div style={descriptionContainerStyles}>
