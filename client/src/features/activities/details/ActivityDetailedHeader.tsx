@@ -1,11 +1,12 @@
 import { observer } from "mobx-react-lite";
 import { format } from "date-fns";
-import { Button, Header, Item, Segment, Image } from "semantic-ui-react";
+import { Button, Header, Item, Segment, Image, Label } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { Link } from "react-router-dom";
 import { useStore } from "../../../app/stores/store";
 
 const segmentStyles = {
+  position: "relative",
   borderRadius: "25px",
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
   overflow: "hidden",
@@ -30,13 +31,27 @@ interface Props {
 
 function ActivityDetailedHeader({ activity }: Props) {
   const {
-    activityStore: { updateAttendance, loading },
+    activityStore: { updateAttendance, loading, cancelActivityToggle },
   } = useStore();
 
   return (
     <>
       <Item style={{ marginBottom: "25px" }}>
         <Segment basic attached="top" style={segmentStyles}>
+          {activity.isCancelled && (
+            <Label
+              style={{
+                position: "absolute",
+                zIndex: 1000,
+                left: -1,
+                top: 20,
+              }}
+              color="red"
+              ribbon
+            >
+              Cancelled
+            </Label>
+          )}
           <Image
             src={`/assets/categoryImages/${activity.category}.jpg`}
             fluid
@@ -68,15 +83,30 @@ function ActivityDetailedHeader({ activity }: Props) {
         </Segment>
         <Item clearing attached="bottom" style={{ margin: "15px 0px" }}>
           {activity.isHost ? (
-            <Button
-              as={Link}
-              to={`/manage/${activity.id}`}
-              inverted
-              color="blue"
-              style={{ borderRadius: "25px" }}
-            >
-              Manage Event
-            </Button>
+            <>
+              <Button
+                as={Link}
+                to={`/manage/${activity.id}`}
+                inverted
+                color="blue"
+                disabled={activity.isCancelled}
+                style={{ borderRadius: "25px", marginRight: "10px" }}
+              >
+                Manage Event
+              </Button>
+              <Button
+                color={activity.isCancelled ? "green" : "orange"}
+                inverted
+                content={
+                  activity.isCancelled
+                    ? "Re-activate activity"
+                    : "Cancel Activity"
+                }
+                onClick={cancelActivityToggle}
+                loading={loading}
+                style={{ borderRadius: "25px" }}
+              />
+            </>
           ) : activity.isGoing ? (
             <Button
               inverted
@@ -93,6 +123,7 @@ function ActivityDetailedHeader({ activity }: Props) {
               onClick={updateAttendance}
               loading={loading}
               color="blue"
+              disabled={activity.isCancelled}
               style={{ marginRight: "5px", borderRadius: "25px" }}
             >
               Join Activity
