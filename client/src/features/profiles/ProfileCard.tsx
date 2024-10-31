@@ -9,6 +9,7 @@ const cardStyles = {
   borderRadius: "25px",
   padding: "20px",
   border: "none",
+  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.2)",
 };
 
 interface Props {
