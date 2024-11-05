@@ -29,7 +29,7 @@ function ActivityDetailedSidebar({ activity: { attendees, host } }: Props) {
         style={segmentStyles}
       >
         <Header>
-          {attendees.length} {attendees.length === 1 ? "Person" : "People"}
+          {attendees.length} {attendees.length === 1 ? " Person " : " People "}
           going
         </Header>
       </Segment>
