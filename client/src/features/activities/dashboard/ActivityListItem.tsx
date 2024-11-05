@@ -40,7 +40,7 @@ export default function ActivityListItem({ activity }: Props) {
               style={{ margin: "5px" }}
               size="tiny"
               circular
-              src="/assets/user.png"
+              src={activity.host?.image || "/assets/user.png"}
             />
             <Item.Content style={{ marginTop: "20px" }}>
               <Item.Header as="a">{activity.title}</Item.Header>
