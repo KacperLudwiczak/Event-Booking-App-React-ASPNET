@@ -14,8 +14,8 @@ namespace Application.Photos
         }
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-            private readonly DataContext _context;
             private readonly IUserAccessor _userAccessor;
+            private readonly DataContext _context;
             public Handler(DataContext context, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
@@ -24,11 +24,11 @@ namespace Application.Photos
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users
-                    .Include(p => p.Photos)
-                    .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
-                var photo = user.Photos.FirstOrDefault(x => x.Id == request.Id);
+                    .Include(photos => photos.Photos)
+                    .FirstOrDefaultAsync(item => item.UserName == _userAccessor.GetUsername());
+                var photo = user.Photos.FirstOrDefault(item => item.Id == request.Id);
                 if (photo == null) return null;
-                var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+                var currentMain = user.Photos.FirstOrDefault(item => item.IsMain);
                 if (currentMain != null) currentMain.IsMain = false;
                 photo.IsMain = true;
                 var success = await _context.SaveChangesAsync() > 0;
