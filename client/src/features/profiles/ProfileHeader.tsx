@@ -10,9 +10,16 @@ import {
   Button,
 } from "semantic-ui-react";
 
+const segmentStyles = {
+  padding: "25px",
+  borderRadius: "25px",
+  border: "none",
+  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
+};
+
 function ProfileHeader() {
   return (
-    <Segment>
+    <Segment style={segmentStyles}>
       <Grid>
         <Grid.Column width={12}>
           <Item.Group>
