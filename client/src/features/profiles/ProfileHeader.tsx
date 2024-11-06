@@ -17,11 +17,7 @@ function ProfileHeader() {
         <Grid.Column width={12}>
           <Item.Group>
             <Item>
-              <Item.Image
-                avatar
-                size="small"
-                src={"/assets/user.png"}
-              />
+              <Item.Image avatar size="small" src={"/assets/user.png"} />
               <Item.Content verticalAlign="middle">
                 <Header as="h1" />
               </Item.Content>
@@ -34,16 +30,21 @@ function ProfileHeader() {
             <Statistic label="Following" value="42" />
           </Statistic.Group>
           <Divider />
-          <Reveal animated="move">
+          <Reveal animated="small fade">
             <Reveal.Content visible style={{ width: "100%" }}>
-              <Button fluid color="teal" content="Following" />
+              <Button
+                fluid
+                content="Following"
+                style={{ backgroundColor: "#54c8ff", color: "#fff", borderRadius: "25px" }}
+              />
             </Reveal.Content>
             <Reveal.Content hidden>
               <Button
                 fluid
-                basic
-                // color={true ? 'red' : 'green'}
-                // content={true ? 'Unfollow' : 'Follow'}
+                inverted
+                style={{ borderRadius: "25px" }}
+                color={true ? "red" : "green"} // eslint-disable-line no-constant-condition
+                content={true ? "Unfollow" : "Follow"} // eslint-disable-line no-constant-condition
               />
             </Reveal.Content>
           </Reveal>
