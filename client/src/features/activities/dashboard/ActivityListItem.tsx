@@ -46,7 +46,17 @@ export default function ActivityListItem({ activity }: Props) {
               <Item.Header as="a">{activity.title}</Item.Header>
               <div style={descriptionContainerStyles}>
                 <Item.Description>
-                  Hosted by {activity.host?.displayName}
+                  Hosted by{" "}
+                  <Link
+                    to={`/profiles/${activity.hostUsername}`}
+                    style={{
+                      textDecoration: "none",
+                      color: "inherit",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {activity.host?.displayName}
+                  </Link>
                 </Item.Description>
                 {activity.isHost && (
                   <Item.Description style={{ marginLeft: "8px" }}>
