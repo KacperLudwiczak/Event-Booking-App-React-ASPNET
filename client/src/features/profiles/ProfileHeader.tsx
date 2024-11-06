@@ -5,7 +5,6 @@ import {
   Item,
   Header,
   Statistic,
-  Divider,
   Reveal,
   Button,
 } from "semantic-ui-react";
@@ -32,17 +31,20 @@ function ProfileHeader() {
           </Item.Group>
         </Grid.Column>
         <Grid.Column width={4}>
-          <Statistic.Group widths={2}>
+          <Statistic.Group widths={2} style={{ marginBottom: "20px" }}>
             <Statistic label="Followers" value="5" />
             <Statistic label="Following" value="42" />
           </Statistic.Group>
-          <Divider />
           <Reveal animated="small fade">
             <Reveal.Content visible style={{ width: "100%" }}>
               <Button
                 fluid
                 content="Following"
-                style={{ backgroundColor: "#54c8ff", color: "#fff", borderRadius: "25px" }}
+                style={{
+                  backgroundColor: "#54c8ff",
+                  color: "#fff",
+                  borderRadius: "25px",
+                }}
               />
             </Reveal.Content>
             <Reveal.Content hidden>
