@@ -31,7 +31,7 @@ function ProfileHeader() {
           </Item.Group>
         </Grid.Column>
         <Grid.Column width={4}>
-          <Statistic.Group widths={2} style={{ marginBottom: "20px" }}>
+          <Statistic.Group widths={2} style={{ marginBottom: "10px" }}>
             <Statistic label="Followers" value="5" />
             <Statistic label="Following" value="42" />
           </Statistic.Group>
