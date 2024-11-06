@@ -1,10 +1,13 @@
 import { observer } from "mobx-react-lite";
 import { Grid } from "semantic-ui-react";
+import ProfileHeader from "./ProfileHeader";
 
 function ProfilePage() {   
     return (
         <Grid>
-          <h1>Profile Page</h1>
+          <Grid.Column width='16'>
+                <ProfileHeader />
+            </Grid.Column>
         </Grid>
     )
 }
