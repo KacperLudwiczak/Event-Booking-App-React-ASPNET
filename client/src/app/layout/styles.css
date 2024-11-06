@@ -90,3 +90,12 @@ body {
   filter: blur(5px); 
 }
 /* End modal styles*/
+
+/* Menu profile styles */
+.ui.secondary.vertical.menu {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+}
+/* End menu profile styles*/
