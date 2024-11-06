@@ -2,17 +2,16 @@ import { observer } from "mobx-react-lite";
 import { Tab, TabPane } from "semantic-ui-react";
 
 const segmentStyles = {
-  padding: "25px",
-  borderRadius: "25px",
   border: "none",
-  boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
+  borderRight: "1px solid #ddd",
+  boxShadow: "none",
 };
 
 function ProfileContent() {
   const panes = [
     {
       menuItem: "About",
-      render: () => <TabPane style={segmentStyles} attached={false}>About Content</TabPane>,
+      render: () => <TabPane style={segmentStyles}>About Content</TabPane>,
     },
     {
       menuItem: "Photos",
@@ -34,10 +33,10 @@ function ProfileContent() {
   return (
     <Tab
       menu={{ secondary: true, vertical: true }}
-      menuItem={{color: "red"}}
+      menuItem={{ color: "red" }}
       menuPosition="right"
       panes={panes}
-      style={{ width: "1200px" }}
+      className="menu-profile"
     />
   );
 }

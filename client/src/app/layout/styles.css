@@ -92,7 +92,7 @@ body {
 /* End modal styles*/
 
 /* Menu profile styles */
-.ui.secondary.vertical.menu {
+.menu-profile {
   background-color: #fff;
   padding: 25px;
   border-radius: 25px;
