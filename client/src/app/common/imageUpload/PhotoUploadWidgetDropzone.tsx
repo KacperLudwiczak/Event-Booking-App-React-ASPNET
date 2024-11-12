@@ -1,30 +1,48 @@
-import {useCallback} from 'react'
-import {useDropzone} from 'react-dropzone'
-import { Header, Icon } from 'semantic-ui-react';
+import { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import { Header, Icon } from "semantic-ui-react";
 
-export default function PhotoUploadWidgetDropzone() {
-    const dzStyles = {
-        border: 'dashed 3px #eee',
-        borderColor: '#eee',
-        borderRadius: '5px',
-        paddingTop: '30px',
-        textAlign: 'center',
-        height: '200px'
-    }
-    const dzActive = {
-        borderColor: 'green',
-    }
+interface Props {
+    setFiles: (files: FileWithPreview[]) => void;
+  }
+  
+  interface FileWithPreview extends File {
+    preview: string;
+  }
 
-    const onDrop = useCallback((acceptedFiles: object[]) => {
-       console.log(acceptedFiles)
-    }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+export default function PhotoUploadWidgetDropzone({ setFiles }: Props) {
+  const dzStyles = {
+    border: "dashed 3px #ddd",
+    borderColor: "#ddd",
+    borderRadius: "5px",
+    paddingTop: "30px",
+    textAlign: "center",
+    height: "170px",
+    width: "170px",
+  };
+  const dzActive = {
+    borderColor: "green",
+  };
 
-    return (
-        <div {...getRootProps()} style={isDragActive ? {...dzStyles, ...dzActive} : dzStyles}>
-            <input {...getInputProps()} />
-            <Icon name='upload' size='huge' />
-            <Header content='Drop image here' />
-        </div>
-    )
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setFiles(
+      acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      )
+    );
+  }, [setFiles]);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  return (
+    <div
+      {...getRootProps()}
+      style={isDragActive ? { ...dzStyles, ...dzActive } : dzStyles}
+    >
+      <input {...getInputProps()} />
+      <Icon name="upload" size="huge" />
+      <Header content="Drop image here" />
+    </div>
+  );
 }
