@@ -14,6 +14,7 @@ function ProfilePhotos({ profile }: Props) {
     profileStore: {
       isCurrentUser,
       setMainPhoto,
+      uploadPhoto,
       loading,
       uploading,
       deletePhoto,
@@ -22,8 +23,15 @@ function ProfilePhotos({ profile }: Props) {
   const [addPhotoMode, setAddPhotoMode] = useState(false);
   const [target, setTarget] = useState("");
 
-  function handleSetMain(photo: Photo, e: SyntheticEvent<HTMLButtonElement>) {
-    setTarget(e.currentTarget.name);
+  function handlePhotoUpload(file: Blob) {
+    uploadPhoto(file).then(() => setAddPhotoMode(false));
+  }
+
+  function handleSetMain(
+    photo: Photo,
+    event: SyntheticEvent<HTMLButtonElement>
+  ) {
+    setTarget(event.currentTarget.name);
     setMainPhoto(photo);
   }
 
@@ -55,7 +63,10 @@ function ProfilePhotos({ profile }: Props) {
         </Grid.Column>
         <Grid.Column width="16">
           {addPhotoMode ? (
-            <PhotoUploadWidget loading={uploading} />
+            <PhotoUploadWidget
+              uploadPhoto={handlePhotoUpload}
+              loading={uploading}
+            />
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile.photos?.map((photo) => (
