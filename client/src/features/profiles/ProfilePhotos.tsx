@@ -29,14 +29,18 @@ function ProfilePhotos({ profile }: Props) {
   }
 
   return (
-    <TabPane>
+    <TabPane style={{ border: "none", borderRight: "1px solid #ddd" }}>
       <Grid>
         <Grid.Column width="16">
           <Header floated="left" icon="image" content="Photos" />
           {isCurrentUser && (
             <Button
               floated="right"
-              basic
+              style={{
+                backgroundColor: "#54c8ff",
+                color: "#fff",
+                borderRadius: "25px",
+              }}
               content={addPhotoMode ? "Cancel" : "Add" + " Photo"}
               onClick={() => setAddPhotoMode(!addPhotoMode)}
             />
@@ -48,7 +52,7 @@ function ProfilePhotos({ profile }: Props) {
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile.photos?.map((photo) => (
-                <Card key={photo.id}>
+                <Card key={photo.id} >
                   <Image src={photo.url} />
                   {isCurrentUser && (
                     <Button.Group fluid widths={2}>
