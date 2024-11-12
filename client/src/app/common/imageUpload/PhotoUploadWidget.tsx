@@ -24,10 +24,22 @@ function PhotoUploadWidget({ loading }: Props) {
             className="img-preview"
             style={{ minHeight: 200, overflow: "hidden" }}
           />
-          <Button.Group widths={2}>
-            <Button loading={loading} positive icon="check" />
-            <Button disabled={loading} icon="close" />
-          </Button.Group>
+          <Button
+            inverted
+            floated="right"
+            color="orange"
+            disabled={loading}
+            icon="close"
+            style={{ width: "75px", borderRadius: "25px" }}
+          />
+          <Button
+            inverted
+            floated="right"
+            color="blue"
+            loading={loading}
+            icon="check"
+            style={{ width: "75px", borderRadius: "25px" }}
+          />
         </Grid.Column>
       </Grid>
     </>
