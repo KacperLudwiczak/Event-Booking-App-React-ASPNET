@@ -3,6 +3,7 @@ import { SyntheticEvent, useState } from "react";
 import { Card, Header, Image, Grid, Button, TabPane } from "semantic-ui-react";
 import { Photo, Profile } from "../../app/models/profile";
 import { useStore } from "../../app/stores/store";
+import PhotoUploadWidget from "../../app/common/imageUpload/PhotoUploadWidget";
 
 interface Props {
   profile: Profile;
@@ -10,7 +11,13 @@ interface Props {
 
 function ProfilePhotos({ profile }: Props) {
   const {
-    profileStore: { isCurrentUser, setMainPhoto, loading, deletePhoto },
+    profileStore: {
+      isCurrentUser,
+      setMainPhoto,
+      loading,
+      uploading,
+      deletePhoto,
+    },
   } = useStore();
   const [addPhotoMode, setAddPhotoMode] = useState(false);
   const [target, setTarget] = useState("");
@@ -48,7 +55,7 @@ function ProfilePhotos({ profile }: Props) {
         </Grid.Column>
         <Grid.Column width="16">
           {addPhotoMode ? (
-            <div>PhotoUploadWidget</div>
+            <PhotoUploadWidget loading={uploading} />
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile.photos?.map((photo) => (
