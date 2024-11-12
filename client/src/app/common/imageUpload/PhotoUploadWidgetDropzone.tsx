@@ -3,15 +3,15 @@ import { useDropzone } from "react-dropzone";
 import { Header, Icon } from "semantic-ui-react";
 
 interface Props {
-    setFiles: (files: FileWithPreview[]) => void;
-  }
-  
-  interface FileWithPreview extends File {
-    preview: string;
-  }
+  setFiles: (files: FileWithPreview[]) => void;
+}
+
+interface FileWithPreview extends File {
+  preview: string;
+}
 
 export default function PhotoUploadWidgetDropzone({ setFiles }: Props) {
-  const dzStyles = {
+  const dzStyles: React.CSSProperties = {
     border: "dashed 3px #ddd",
     borderColor: "#ddd",
     borderRadius: "5px",
@@ -20,19 +20,22 @@ export default function PhotoUploadWidgetDropzone({ setFiles }: Props) {
     height: "170px",
     width: "170px",
   };
-  const dzActive = {
+  const dzActive: React.CSSProperties = {
     borderColor: "green",
   };
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles(
-      acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      )
-    );
-  }, [setFiles]);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+    [setFiles]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
