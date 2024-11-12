@@ -37,9 +37,9 @@ function ProfilePhotos({ profile }: Props) {
 
   function handleDeletePhoto(
     photo: Photo,
-    e: SyntheticEvent<HTMLButtonElement>
+    event: SyntheticEvent<HTMLButtonElement>
   ) {
-    setTarget(e.currentTarget.name);
+    setTarget(event.currentTarget.name);
     deletePhoto(photo);
   }
 

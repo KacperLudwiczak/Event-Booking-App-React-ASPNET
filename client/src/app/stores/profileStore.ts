@@ -60,11 +60,11 @@ export default class ProfileStore {
         this.loading = true;
         try {
             await agent.Profiles.setMainPhoto(photo.id);
-            // store.userStore.setImage(photo.url);
+            store.userStore.setImage(photo.url);
             runInAction(() => {
                 if (this.profile && this.profile.photos) {
-                    this.profile.photos.find(a => a.isMain)!.isMain = false;
-                    this.profile.photos.find(a => a.id === photo.id)!.isMain = true;
+                    this.profile.photos.find(item => item.isMain)!.isMain = false;
+                    this.profile.photos.find(item => item.id === photo.id)!.isMain = true;
                     this.profile.image = photo.url;
                     this.loading = false;
                 }
@@ -80,7 +80,7 @@ export default class ProfileStore {
             await agent.Profiles.deletePhoto(photo.id);
             runInAction(() => {
                 if (this.profile) {
-                    this.profile.photos = this.profile.photos?.filter(a => a.id !== photo.id);
+                    this.profile.photos = this.profile.photos?.filter(item => item.id !== photo.id);
                     this.loading = false;
                 }
             })
