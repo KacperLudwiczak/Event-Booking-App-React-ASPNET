@@ -1,5 +1,6 @@
 import { Button, Grid, Header } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
+import PhotoUploadWidgetDropzone from "./PhotoUploadWidgetDropzone";
 
 interface Props {
   loading: boolean;
@@ -12,6 +13,7 @@ function PhotoUploadWidget({ loading }: Props) {
         <Grid.Row />
         <Grid.Column width={4}>
           <Header color="teal" sub content="Step 1 - Add Photo" />
+          <PhotoUploadWidgetDropzone />
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
