@@ -6,19 +6,20 @@ import PhotoWidgetCropper from "./PhotoWidgetCropper";
 
 interface Props {
   loading: boolean;
+  uploadPhoto: (file: Blob) => void;
 }
 
 interface FileWithPreview extends File {
   preview: string;
 }
 
-function PhotoUploadWidget({ loading }: Props) {
+function PhotoUploadWidget({ loading, uploadPhoto }: Props) {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const [cropper, setCropper] = useState<Cropper>();
 
   function onCrop() {
     if (cropper) {
-      cropper.getCroppedCanvas().toBlob((blob) => console.log(blob));
+      cropper.getCroppedCanvas().toBlob((blob) => uploadPhoto(blob!));
     }
   }
 
