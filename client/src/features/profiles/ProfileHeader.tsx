@@ -8,6 +8,7 @@ import {
   Reveal,
   Button,
 } from "semantic-ui-react";
+import { Profile } from "../../app/models/profile";
 
 const segmentStyles = {
   padding: "25px",
@@ -16,16 +17,24 @@ const segmentStyles = {
   boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
 };
 
-function ProfileHeader() {
+interface Props {
+  profile: Profile;
+}
+
+function ProfileHeader({ profile }: Props) {
   return (
     <Segment style={segmentStyles}>
       <Grid>
         <Grid.Column width={12}>
           <Item.Group>
             <Item>
-              <Item.Image avatar size="small" src={"/assets/user.png"} />
+              <Item.Image
+                avatar
+                size="small"
+                src={profile.image || "/assets/user.png"}
+              />
               <Item.Content verticalAlign="middle">
-                <Header as="h1" />
+                <Header as="h1" content={profile.displayName} />
               </Item.Content>
             </Item>
           </Item.Group>

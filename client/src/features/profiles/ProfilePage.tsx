@@ -23,7 +23,7 @@ function ProfilePage() {
   return (
     <Grid>
       <Grid.Column width="16">
-        <ProfileHeader />
+        <ProfileHeader profile={profile}/>
         <ProfileContent />
       </Grid.Column>
     </Grid>
