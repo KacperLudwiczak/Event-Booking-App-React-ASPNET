@@ -1,5 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { Tab, TabPane } from "semantic-ui-react";
+import { Profile } from "../../app/models/profile";
+import ProfilePhotos from "./ProfilePhotos";
 
 const segmentStyles = {
   border: "none",
@@ -7,7 +9,11 @@ const segmentStyles = {
   boxShadow: "none",
 };
 
-function ProfileContent() {
+interface Props {
+  profile: Profile;
+}
+
+function ProfileContent({ profile }: Props) {
   const panes = [
     {
       menuItem: "About",
@@ -15,7 +21,7 @@ function ProfileContent() {
     },
     {
       menuItem: "Photos",
-      render: () => <TabPane style={segmentStyles}>Profile Photo</TabPane>,
+      render: () => <ProfilePhotos profile={profile} />,
     },
     {
       menuItem: "Events",

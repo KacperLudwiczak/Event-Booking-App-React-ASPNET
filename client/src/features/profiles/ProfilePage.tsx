@@ -15,7 +15,7 @@ function ProfilePage() {
   useEffect(() => {
     if (username) loadProfile(username);
   }, [loadProfile, username]);
-  
+
   if (loadingProfile)
     return <LoadingComponent inverted content="Loading profile..." />;
   if (!profile) return <h2>Problem loading profile</h2>;
@@ -23,8 +23,8 @@ function ProfilePage() {
   return (
     <Grid>
       <Grid.Column width="16">
-        <ProfileHeader profile={profile}/>
-        <ProfileContent />
+        <ProfileHeader profile={profile} />
+        <ProfileContent profile={profile} />
       </Grid.Column>
     </Grid>
   );
