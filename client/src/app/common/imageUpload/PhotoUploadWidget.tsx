@@ -1,14 +1,24 @@
 import { Button, Grid, Header } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import PhotoUploadWidgetDropzone from "./PhotoUploadWidgetDropzone";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   loading: boolean;
 }
 
+interface FileWithPreview extends File {
+  preview: string;
+}
+
 function PhotoUploadWidget({ loading }: Props) {
-  const [files, setFiles] = useState<any>([]);
+  const [files, setFiles] = useState<FileWithPreview[]>([]);
+
+  useEffect(() => {
+    return () => {
+      files.forEach((file) => URL.revokeObjectURL(file.preview));
+    };
+  }, [files]);
 
   return (
     <>
