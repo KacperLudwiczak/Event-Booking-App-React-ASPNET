@@ -1,27 +1,30 @@
 import { Button, Grid, Header } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import PhotoUploadWidgetDropzone from "./PhotoUploadWidgetDropzone";
+import { useState } from "react";
 
 interface Props {
   loading: boolean;
 }
 
 function PhotoUploadWidget({ loading }: Props) {
+  const [files, setFiles] = useState<any>([]);
+
   return (
     <>
       <Grid>
         <Grid.Row />
         <Grid.Column width={4}>
-          <Header content="Step 1 - Add Photo" style={{color: "#54c8ff"}}/>
-          <PhotoUploadWidgetDropzone />
+          <Header content="Step 1 - Add Photo" style={{ color: "#54c8ff" }} />
+          <PhotoUploadWidgetDropzone setFiles={setFiles} />
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
-          <Header content="Step 2 - Resize"  style={{color: "#54c8ff"}}/>
+          <Header content="Step 2 - Resize" style={{ color: "#54c8ff" }} />
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
-          <Header content="Step 3 - Upload"  style={{color: "#54c8ff"}}/>
+          <Header content="Step 3 - Upload" style={{ color: "#54c8ff" }} />
           <div
             className="img-preview"
             style={{ minHeight: 200, overflow: "hidden" }}
