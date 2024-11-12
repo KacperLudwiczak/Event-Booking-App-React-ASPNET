@@ -18,7 +18,7 @@ function PhotoUploadWidget({ loading }: Props) {
 
   function onCrop() {
     if (cropper) {
-      cropper.getCroppedCanvas().toBlob((blob) => uploadPhoto(blob!));
+      cropper.getCroppedCanvas().toBlob((blob) => console.log(blob));
     }
   }
 

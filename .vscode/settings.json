@@ -3,6 +3,7 @@
         "ASPNETCORE",
         "Cloudinary",
         "creds",
+        "cropperjs",
         "datepicker",
         "Formik",
         "Hmac",
