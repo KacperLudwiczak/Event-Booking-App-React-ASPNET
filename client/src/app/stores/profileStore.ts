@@ -36,7 +36,7 @@ export default class ProfileStore {
             })
         }
     }
-    uploadPhoto = async (file: File) => {
+    uploadPhoto = async (file: Blob) => {
         this.uploading = true;
         try {
             const response = await agent.Profiles.uploadPhoto(file);
@@ -45,7 +45,7 @@ export default class ProfileStore {
                 if (this.profile) {
                     this.profile.photos?.push(photo);
                     if (photo.isMain && store.userStore.user) {
-                        // store.userStore.setImage(photo.url);
+                        store.userStore.setImage(photo.url);
                         this.profile.image = photo.url;
                     }
                 }
