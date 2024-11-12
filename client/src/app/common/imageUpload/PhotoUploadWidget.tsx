@@ -1,7 +1,8 @@
-import { Button, Grid, Header, Image } from "semantic-ui-react";
+import { Button, Grid, Header } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import PhotoUploadWidgetDropzone from "./PhotoUploadWidgetDropzone";
 import { useEffect, useState } from "react";
+import PhotoWidgetCropper from "./PhotoWidgetCropper";
 
 interface Props {
   loading: boolean;
@@ -13,6 +14,13 @@ interface FileWithPreview extends File {
 
 function PhotoUploadWidget({ loading }: Props) {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
+  const [cropper, setCropper] = useState<Cropper>();
+
+  function onCrop() {
+    if (cropper) {
+      cropper.getCroppedCanvas().toBlob((blob) => uploadPhoto(blob!));
+    }
+  }
 
   useEffect(() => {
     return () => {
@@ -31,7 +39,12 @@ function PhotoUploadWidget({ loading }: Props) {
         <Grid.Column width={1} />
         <Grid.Column width={4}>
           <Header content="Step 2 - Resize" style={{ color: "#54c8ff" }} />
-          {files && files.length > 0 && <Image src={files[0].preview} />}
+          {files && files.length > 0 && (
+            <PhotoWidgetCropper
+              setCropper={setCropper}
+              imagePreview={files[0].preview}
+            />
+          )}
         </Grid.Column>
         <Grid.Column width={1} />
         <Grid.Column width={4}>
@@ -52,6 +65,7 @@ function PhotoUploadWidget({ loading }: Props) {
             inverted
             floated="right"
             color="blue"
+            onClick={onCrop}
             loading={loading}
             icon="check"
             style={{ width: "75px", borderRadius: "25px" }}
