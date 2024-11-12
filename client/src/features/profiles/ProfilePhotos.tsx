@@ -52,7 +52,7 @@ function ProfilePhotos({ profile }: Props) {
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile.photos?.map((photo) => (
-                <Card key={photo.id} >
+                <Card key={photo.id}>
                   <Image src={photo.url} />
                   {isCurrentUser && (
                     <Button.Group fluid widths={2}>
@@ -63,16 +63,16 @@ function ProfilePhotos({ profile }: Props) {
                         name={"main" + photo.id}
                         loading={target === "main" + photo.id && loading}
                         disabled={photo.isMain}
-                        onClick={(e) => handleSetMain(photo, e)}
+                        onClick={(event) => handleSetMain(photo, event)}
                       />
                       <Button
-                        name={photo.id}
-                        loading={loading && photo.id === target}
-                        onClick={(e) => handleDeletePhoto(photo, e)}
                         basic
                         color="red"
                         icon="trash"
+                        name={photo.id}
+                        loading={loading && photo.id === target}
                         disabled={photo.isMain}
+                        onClick={(event) => handleDeletePhoto(photo, event)}
                       />
                     </Button.Group>
                   )}
