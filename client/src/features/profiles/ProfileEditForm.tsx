@@ -35,12 +35,16 @@ function ProfileEditForm({ setEditMode }: Props) {
           <MyTextInput placeholder="Display Name" name="displayName" />
           <MyTextArea rows={3} placeholder="Add your bio" name="bio" />
           <Button
-            positive
             type="submit"
             loading={isSubmitting}
             content="Update profile"
             floated="right"
             disabled={!isValid || !dirty}
+            style={{
+              backgroundColor: "#54c8ff",
+              color: "#fff",
+              borderRadius: "25px",
+            }}
           />
         </Form>
       )}
