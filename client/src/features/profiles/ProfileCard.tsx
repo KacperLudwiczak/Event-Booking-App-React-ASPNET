@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const cardStyles = {
   width: "250px",
-  height: "360px",
+  height: "370px",
   borderRadius: "25px",
   padding: "20px",
   border: "none",
