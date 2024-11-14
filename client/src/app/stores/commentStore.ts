@@ -7,6 +7,11 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { ChatComment } from "../models/comment";
 import { store } from "./store";
 
+interface CommentValues {
+  activityId: string;
+  text: string;
+}
+
 export default class CommentStore {
   comments: ChatComment[] = [];
   hubConnection: HubConnection | null = null;
@@ -53,5 +58,13 @@ export default class CommentStore {
   clearComments = () => {
     this.comments = [];
     this.stopHubConnection();
+  };
+  addComment = async (values: CommentValues) => {
+    values.activityId = store.activityStore.selectedActivity?.id ?? "";
+    try {
+      await this.hubConnection?.invoke("SendComment", values);
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
