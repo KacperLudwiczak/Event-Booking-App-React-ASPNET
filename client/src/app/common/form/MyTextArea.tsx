@@ -6,13 +6,14 @@ interface Props {
     name: string;
     rows: number;
     label?: string;
+    style?: React.CSSProperties;
 }
 
 export default function MyTextArea(props: Props) {
     const [field, meta] = useField(props.name);
     
     return (
-        <Form.Field error={meta.touched && !!meta.error}>
+        <Form.Field error={meta.touched && !!meta.error} style={props.style}>
             <label>{props.label}</label>
             <textarea {...field} {...props}/>
             {meta.touched && meta.error ? (
