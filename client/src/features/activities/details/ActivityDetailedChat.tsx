@@ -3,7 +3,6 @@ import {
   Segment,
   Header,
   Comment,
-  Form,
   Button,
   Item,
   Image,
@@ -12,6 +11,8 @@ import { useStore } from "../../../app/stores/store";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
+import { Form, Formik } from "formik";
+import MyTextArea from "../../../app/common/form/MyTextArea";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -80,17 +81,30 @@ function ActivityDetailedChat({ activityId }: Props) {
               </div>
             </Comment>
           ))}
-          <Form reply>
-            <Form.TextArea style={{ borderRadius: "25px" }} />
-            <Button
-              inverted
-              content="Add Reply"
-              labelPosition="left"
-              icon="edit"
-              primary
-              style={{ borderRadius: "25px" }}
-            />
-          </Form>
+          <Formik
+            onSubmit={(values, { resetForm }) =>
+              commentStore.addComment(values).then(() => resetForm())
+            }
+            initialValues={{ body: "" }}
+          >
+            {({ isSubmitting, isValid }) => (
+              <Form className="ui form">
+                <MyTextArea placeholder="Add comment" name="body" rows={2} />
+                <Button
+                  inverted
+                  loading={isSubmitting}
+                  disabled={isSubmitting || !isValid}
+                  content="Add Reply"
+                  labelPosition="left"
+                  icon="edit"
+                  primary
+                  type="submit"
+                  floated="right"
+                  style={{ borderRadius: "25px" }}
+                />
+              </Form>
+            )}
+          </Formik>
         </Comment.Group>
       </Item>
     </Item>
