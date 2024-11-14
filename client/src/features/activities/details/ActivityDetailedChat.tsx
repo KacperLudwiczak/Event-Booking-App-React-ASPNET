@@ -54,6 +54,45 @@ function ActivityDetailedChat({ activityId }: Props) {
         <Header>Chat about this event</Header>
       </Segment>
       <Item>
+        {" "}
+        <Formik
+          onSubmit={(values, { resetForm }) =>
+            commentStore
+              .addComment({ ...values, activityId })
+              .then(() => resetForm())
+          }
+          initialValues={{ body: "" }}
+          validationSchema={Yup.object({
+            body: Yup.string().required(),
+          })}
+        >
+          {({ isSubmitting, isValid, handleSubmit }) => (
+            <Form className="ui form">
+              <Field name="body">
+                {(props: FieldProps) => (
+                  <div style={{ position: "relative" }}>
+                    <Loader active={isSubmitting} />
+                    <textarea
+                      placeholder="Enter your comment (Enter to submit, SHIFT + Enter for new line)"
+                      style={{ borderRadius: "25px" }}
+                      rows={2}
+                      {...props.field}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" && event.shiftKey) {
+                          return;
+                        }
+                        if (event.key === "Enter" && !event.shiftKey) {
+                          event.preventDefault();
+                          if (isValid) handleSubmit();
+                        }
+                      }}
+                    />
+                  </div>
+                )}
+              </Field>
+            </Form>
+          )}
+        </Formik>
         <Comment.Group>
           {commentStore.comments.map((comment) => (
             <Comment key={comment.id}>
@@ -81,44 +120,6 @@ function ActivityDetailedChat({ activityId }: Props) {
               </div>
             </Comment>
           ))}
-          <Formik
-            onSubmit={(values, { resetForm }) =>
-              commentStore
-                .addComment({ ...values, activityId })
-                .then(() => resetForm())
-            }
-            initialValues={{ body: "" }}
-            validationSchema={Yup.object({
-              body: Yup.string().required(),
-            })}
-          >
-            {({ isSubmitting, isValid, handleSubmit }) => (
-              <Form className="ui form">
-                <Field name="body">
-                  {(props: FieldProps) => (
-                    <div style={{ position: "relative" }}>
-                      <Loader active={isSubmitting} />
-                      <textarea
-                        placeholder="Enter your comment (Enter to submit, SHIFT + Enter for new line)"
-                        style={{ borderRadius: "25px" }}
-                        rows={2}
-                        {...props.field}
-                        onKeyDown={(event) => {
-                          if (event.key === "Enter" && event.shiftKey) {
-                            return;
-                          }
-                          if (event.key === "Enter" && !event.shiftKey) {
-                            event.preventDefault();
-                            if (isValid) handleSubmit();
-                          }
-                        }}
-                      />
-                    </div>
-                  )}
-                </Field>
-              </Form>
-            )}
-          </Formik>
         </Comment.Group>
       </Item>
     </Item>
