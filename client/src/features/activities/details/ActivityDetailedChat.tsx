@@ -3,16 +3,16 @@ import {
   Segment,
   Header,
   Comment,
-  Button,
   Item,
   Image,
+  Loader,
 } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
-import { Form, Formik } from "formik";
-import MyTextArea from "../../../app/common/form/MyTextArea";
+import { Field, FieldProps, Form, Formik } from "formik";
+import * as Yup from "yup";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -88,27 +88,34 @@ function ActivityDetailedChat({ activityId }: Props) {
                 .then(() => resetForm())
             }
             initialValues={{ body: "" }}
+            validationSchema={Yup.object({
+              body: Yup.string().required(),
+            })}
           >
-            {({ isSubmitting, isValid }) => (
+            {({ isSubmitting, isValid, handleSubmit }) => (
               <Form className="ui form">
-                <MyTextArea
-                  placeholder="Add comment"
-                  name="body"
-                  rows={2}
-                  style={{ borderRadius: "25px" }}
-                />
-                <Button
-                  inverted
-                  loading={isSubmitting}
-                  disabled={isSubmitting || !isValid}
-                  content="Add Reply"
-                  labelPosition="left"
-                  icon="edit"
-                  primary
-                  type="submit"
-                  floated="right"
-                  style={{ borderRadius: "25px" }}
-                />
+                <Field name="body">
+                  {(props: FieldProps) => (
+                    <div style={{ position: "relative" }}>
+                      <Loader active={isSubmitting} />
+                      <textarea
+                        placeholder="Enter your comment (Enter to submit, SHIFT + Enter for new line)"
+                        style={{ borderRadius: "25px" }}
+                        rows={2}
+                        {...props.field}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" && event.shiftKey) {
+                            return;
+                          }
+                          if (event.key === "Enter" && !event.shiftKey) {
+                            event.preventDefault();
+                            if (isValid) handleSubmit();
+                          }
+                        }}
+                      />
+                    </div>
+                  )}
+                </Field>
               </Form>
             )}
           </Formik>
