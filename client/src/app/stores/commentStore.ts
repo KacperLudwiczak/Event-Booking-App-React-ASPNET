@@ -9,7 +9,7 @@ import { store } from "./store";
 
 interface CommentValues {
   activityId: string;
-  text: string;
+  body: string;
 }
 
 export default class CommentStore {

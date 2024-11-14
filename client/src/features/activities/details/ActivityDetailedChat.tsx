@@ -83,13 +83,20 @@ function ActivityDetailedChat({ activityId }: Props) {
           ))}
           <Formik
             onSubmit={(values, { resetForm }) =>
-              commentStore.addComment(values).then(() => resetForm())
+              commentStore
+                .addComment({ ...values, activityId })
+                .then(() => resetForm())
             }
             initialValues={{ body: "" }}
           >
             {({ isSubmitting, isValid }) => (
               <Form className="ui form">
-                <MyTextArea placeholder="Add comment" name="body" rows={2} />
+                <MyTextArea
+                  placeholder="Add comment"
+                  name="body"
+                  rows={2}
+                  style={{ borderRadius: "25px" }}
+                />
                 <Button
                   inverted
                   loading={isSubmitting}
