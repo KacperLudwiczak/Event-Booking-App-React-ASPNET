@@ -100,7 +100,7 @@ export default class ActivityStore {
       newActivity.hostUsername = user!.username;
       newActivity.attendees = [profile];
       this.setActivity(newActivity);
-      runInAction(() => this.selectedActivity = newActivity);
+      runInAction(() => (this.selectedActivity = newActivity));
     } catch (error) {
       console.log(error);
     }
@@ -111,10 +111,13 @@ export default class ActivityStore {
       await agent.Activities.update(activity);
       runInAction(() => {
         if (activity.id) {
-          const updatedActivity = { ...this.getActivity(activity.id), ...activity };
+          const updatedActivity = {
+            ...this.getActivity(activity.id),
+            ...activity,
+          };
           this.activityRegistry.set(activity.id, updatedActivity as Activity);
           this.selectedActivity = updatedActivity as Activity;
-      }
+        }
       });
     } catch (error) {
       console.log(error);
@@ -169,15 +172,23 @@ export default class ActivityStore {
   cancelActivityToggle = async () => {
     this.loading = true;
     try {
-        await agent.Activities.attend(this.selectedActivity!.id);
-        runInAction(() => {
-            this.selectedActivity!.isCancelled = !this.selectedActivity!.isCancelled;
-            this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!);
-        })
+      await agent.Activities.attend(this.selectedActivity!.id);
+      runInAction(() => {
+        this.selectedActivity!.isCancelled =
+          !this.selectedActivity!.isCancelled;
+        this.activityRegistry.set(
+          this.selectedActivity!.id,
+          this.selectedActivity!
+        );
+      });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     } finally {
-        runInAction(() => this.loading = false);
+      runInAction(() => (this.loading = false));
     }
-}
+  };
+
+  clearSelectedActivity = () => {
+    this.selectedActivity = undefined;
+  };
 }
