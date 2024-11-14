@@ -8,6 +8,10 @@ import {
   Item,
   Image,
 } from "semantic-ui-react";
+import { useStore } from "../../../app/stores/store";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -20,14 +24,29 @@ const segmentStyles = {
 };
 
 const imageStyles = {
-    borderRadius: "50%",
-    width: "40px",
-    height: "40px",
-    marginRight: "10px",
-    marginBottom: "20px",
-  };
+  borderRadius: "50%",
+  width: "40px",
+  height: "40px",
+  marginRight: "10px",
+  marginBottom: "20px",
+};
 
-function ActivityDetailedChat() {
+interface Props {
+  activityId: string;
+}
+
+function ActivityDetailedChat({ activityId }: Props) {
+  const { commentStore } = useStore();
+
+  useEffect(() => {
+    if (activityId) {
+      commentStore.createHubConnection(activityId);
+    }
+    return () => {
+      commentStore.clearComments();
+    };
+  }, [commentStore, activityId]);
+
   return (
     <Item style={{ marginBottom: "15px" }}>
       <Segment textAlign="center" attached="top" inverted style={segmentStyles}>
@@ -35,46 +54,32 @@ function ActivityDetailedChat() {
       </Segment>
       <Item>
         <Comment.Group>
-          <Comment>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Item>
-                <Image
-                  style={imageStyles}
-                  src="/assets/user.png"
-                />
-              </Item>
-              <Comment.Content>
-                <Comment.Author as="a">Matt</Comment.Author>
-                <Comment.Metadata>
-                  <div>Today at 5:42PM</div>
-                </Comment.Metadata>
-                <Comment.Text>How artistic!</Comment.Text>
-                <Comment.Actions>
-                  <Comment.Action>Reply</Comment.Action>
-                </Comment.Actions>
-              </Comment.Content>
-            </div>
-          </Comment>
-          <Comment>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Item>
-                <Image
-                  style={imageStyles}
-                  src="/assets/user.png"
-                />
-              </Item>
-              <Comment.Content>
-                <Comment.Author as="a">Joe Henderson</Comment.Author>
-                <Comment.Metadata>
-                  <div>5 days ago</div>
-                </Comment.Metadata>
-                <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-                <Comment.Actions>
-                  <Comment.Action>Reply</Comment.Action>
-                </Comment.Actions>
-              </Comment.Content>
-            </div>
-          </Comment>
+          {commentStore.comments.map((comment) => (
+            <Comment key={comment.id}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Item>
+                  <Image
+                    style={imageStyles}
+                    src={comment.image || "/assets/user.png"}
+                  />
+                </Item>
+                <Comment.Content>
+                  <Comment.Author
+                    as={Link}
+                    to={`/profiles/${comment.username}`}
+                  >
+                    {comment.displayName}
+                  </Comment.Author>
+                  <Comment.Metadata>
+                    <div>{formatDistanceToNow(comment.createdAt)} ago</div>
+                  </Comment.Metadata>
+                  <Comment.Text style={{ whiteSpace: "pre-wrap" }}>
+                    {comment.body}
+                  </Comment.Text>
+                </Comment.Content>
+              </div>
+            </Comment>
+          ))}
           <Form reply>
             <Form.TextArea style={{ borderRadius: "25px" }} />
             <Button
@@ -83,7 +88,7 @@ function ActivityDetailedChat() {
               labelPosition="left"
               icon="edit"
               primary
-              style={{borderRadius: "25px"}}
+              style={{ borderRadius: "25px" }}
             />
           </Form>
         </Comment.Group>
