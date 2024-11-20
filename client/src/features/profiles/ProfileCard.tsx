@@ -6,7 +6,7 @@ import FollowButton from "./FollowButton";
 
 const cardStyles = {
   width: "250px",
-  height: "390px",
+  height: "430px",
   borderRadius: "25px",
   padding: "20px",
   border: "none",
