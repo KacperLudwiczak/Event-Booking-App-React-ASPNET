@@ -59,9 +59,11 @@ function ActivityDetailedSidebar({ activity: { attendees, host } }: Props) {
                     {attendee.displayName}
                   </Link>
                 </Item.Header>
-                <Item.Extra style={{ color: "grey", fontSize: "12px" }}>
-                  Following
-                </Item.Extra>
+                {attendee.following && (
+                  <Item.Extra style={{ color: "grey", fontSize: "12px" }}>
+                    Following
+                  </Item.Extra>
+                )}
               </Item.Content>
             </Item>
           ))}
