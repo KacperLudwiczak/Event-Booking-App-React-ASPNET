@@ -41,8 +41,8 @@ function ProfileHeader({ profile }: Props) {
         </Grid.Column>
         <Grid.Column width={4}>
           <Statistic.Group widths={2} style={{ marginBottom: "10px" }}>
-            <Statistic label="Followers" value="5" />
-            <Statistic label="Following" value="42" />
+            <Statistic label="Followers" value={profile.followersCount} />
+            <Statistic label="Following" value={profile.followingCount} />
           </Statistic.Group>
           <Reveal animated="small fade">
             <Reveal.Content visible style={{ width: "100%" }}>
