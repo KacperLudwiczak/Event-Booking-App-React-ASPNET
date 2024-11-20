@@ -3,6 +3,7 @@ import { Tab, TabPane } from "semantic-ui-react";
 import { Profile } from "../../app/models/profile";
 import ProfilePhotos from "./ProfilePhotos";
 import ProfileAbout from "./ProfileAbout";
+import ProfileFollowings from "./ProfileFollowings";
 
 const segmentStyles = {
   border: "none",
@@ -30,11 +31,11 @@ function ProfileContent({ profile }: Props) {
     },
     {
       menuItem: "Followers",
-      render: () => <TabPane style={segmentStyles}>Followers Content</TabPane>,
+      render: () => <ProfileFollowings />,
     },
     {
       menuItem: "Following",
-      render: () => <TabPane style={segmentStyles}>Following Content</TabPane>,
+      render: () => <ProfileFollowings />,
     },
   ];
   return (
