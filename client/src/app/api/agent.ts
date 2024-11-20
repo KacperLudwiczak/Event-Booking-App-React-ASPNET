@@ -108,6 +108,8 @@ const Profiles = {
   deletePhoto: (id: string) => axios.delete(`/photos/${id}`),
   updateProfile: (profile: Partial<Profile>) =>
     requests.put(`/profiles`, profile),
+  updateFollowing: (username: string) =>
+    requests.post(`/follow/${username}`, {}),
 };
 
 const agent = {
