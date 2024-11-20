@@ -4,6 +4,7 @@ import { Profile } from "../../app/models/profile";
 import ProfilePhotos from "./ProfilePhotos";
 import ProfileAbout from "./ProfileAbout";
 import ProfileFollowings from "./ProfileFollowings";
+import { useStore } from "../../app/stores/store";
 
 const segmentStyles = {
   border: "none",
@@ -16,6 +17,8 @@ interface Props {
 }
 
 function ProfileContent({ profile }: Props) {
+  const { profileStore } = useStore();
+
   const panes = [
     {
       menuItem: "About",
@@ -45,6 +48,9 @@ function ProfileContent({ profile }: Props) {
       menuPosition="right"
       panes={panes}
       className="menu-profile"
+      onTabChange={(_, data) =>
+        profileStore.setActiveTab(data.activeIndex as number)
+      }
     />
   );
 }
