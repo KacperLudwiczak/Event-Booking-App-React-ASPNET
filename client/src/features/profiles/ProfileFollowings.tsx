@@ -2,21 +2,16 @@ import { Grid, Header, Card, TabPane } from "semantic-ui-react";
 import ProfileCard from "./ProfileCard";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
 
 const segmentStyles = {
-    border: "none",
-    borderRight: "1px solid #ddd",
-    boxShadow: "none",
-  };
+  border: "none",
+  borderRight: "1px solid #ddd",
+  boxShadow: "none",
+};
 
 function ProfileFollowings() {
   const { profileStore } = useStore();
-  const { profile, followings, loadFollowings, loadingFollowings, activeTab } = profileStore;
-
-  useEffect(() => {
-    loadFollowings("following");
-  }, [loadFollowings]);
+  const { profile, followings, loadingFollowings, activeTab } = profileStore;
 
   return (
     <TabPane loading={loadingFollowings} style={segmentStyles}>
