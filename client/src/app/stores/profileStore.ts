@@ -1,5 +1,5 @@
 import { Photo, Profile } from "../models/profile";
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
 import { toast } from "react-toastify";
 import { store } from "./store";
@@ -15,6 +15,22 @@ export default class ProfileStore {
 
   constructor() {
     makeAutoObservable(this);
+
+    reaction(
+      () => this.activeTab,
+      activeTab => {
+        if (activeTab === 3 || activeTab === 4) {
+          const predicate = activeTab === 3 ? 'followers' : 'following';
+          this.loadFollowings(predicate);
+        } else {
+          this.followings = [];
+        }
+      }
+    )
+  }
+
+  setActiveTab = (activeTab: number) => {
+    this.activeTab = activeTab;
   }
 
   get isCurrentUser() {
