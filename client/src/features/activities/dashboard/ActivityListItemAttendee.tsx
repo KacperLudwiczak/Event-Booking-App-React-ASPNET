@@ -17,6 +17,12 @@ interface Props {
 }
 
 function ActivityListItemAttendee({ attendees }: Props) {
+
+  const styles = {
+    borderColor: "#54c8ff",
+    borderWidth: 2,
+  };
+
   return (
     <List horizontal>
       {attendees.map((attendee) => (
@@ -31,7 +37,9 @@ function ActivityListItemAttendee({ attendees }: Props) {
               <Image
                 size="mini"
                 circular
+                bordered
                 src={attendee.image || `/assets/user.png`}
+                style={attendee.following ? styles : null}
               />
             </List.Item>
           }
