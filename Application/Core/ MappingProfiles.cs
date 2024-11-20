@@ -18,7 +18,11 @@ namespace Application.Core
                 .ForMember(destination => destination.DisplayName, options => options.MapFrom(source => source.AppUser.DisplayName))
                 .ForMember(destination => destination.Username, options => options.MapFrom(source => source.AppUser.UserName))
                 .ForMember(destination => destination.Bio, options => options.MapFrom(source => source.AppUser.Bio))
-                .ForMember(destination => destination.Image, source => source.MapFrom(options => options.AppUser.Photos.FirstOrDefault(item => item.IsMain).Url));
+                .ForMember(destination => destination.Image, options => options.MapFrom(source => source.AppUser.Photos.FirstOrDefault(item => item.IsMain).Url))
+                .ForMember(destination => destination.FollowersCount, options => options.MapFrom(source => source.AppUser.Followers.Count))
+                .ForMember(destination => destination.FollowingCount, options => options.MapFrom(source => source.AppUser.Followings.Count))
+                .ForMember(destination => destination.Following,
+                    options => options.MapFrom(source => source.AppUser.Followers.Any(item => item.Observer.UserName == currentUsername)));
             CreateMap<AppUser, Profiles.Profile>()
                 .ForMember(destination => destination.Image, source => source.MapFrom(options => options.Photos.FirstOrDefault(item => item.IsMain).Url))
                 .ForMember(destination => destination.FollowersCount, options => options.MapFrom(source => source.Followers.Count))
