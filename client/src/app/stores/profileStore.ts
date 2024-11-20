@@ -11,6 +11,7 @@ export default class ProfileStore {
   loading = false;
   followings: Profile[] = [];
   loadingFollowings = false;
+  activeTab: number = 0;
 
   constructor() {
     makeAutoObservable(this);
