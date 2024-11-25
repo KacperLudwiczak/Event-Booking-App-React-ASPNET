@@ -3,7 +3,6 @@ using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Activities
@@ -30,12 +29,9 @@ namespace Application.Activities
                 var query = _context.Activities
                     .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider, new { currentUsername = _userAccessor.GetUsername() })
                     .AsQueryable();
-                return Result<PagedList<ActivityDto>>.Success(activities);
+                return Result<PagedList<ActivityDto>>.Success(await PagedList<ActivityDto>.CreateAsync(query,
+                        request.Params.PageNumber, request.Params.PageSize));
             }
         }
-    }
-
-    public class ActivityParams
-    {
     }
 }
