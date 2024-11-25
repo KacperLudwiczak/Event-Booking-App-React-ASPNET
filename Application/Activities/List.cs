@@ -10,7 +10,10 @@ namespace Application.Activities
 {
     public class List
     {
-        public class Query : IRequest<Result<PagedList<ActivityDto>>> { }
+        public class Query : IRequest<Result<PagedList<ActivityDto>>>
+        {
+            public ActivityParams Params { get; set; }
+        }
         public class Handler : IRequestHandler<Query, Result<PagedList<ActivityDto>>>
         {
             private readonly IMapper _mapper;
@@ -30,5 +33,9 @@ namespace Application.Activities
                 return Result<PagedList<ActivityDto>>.Success(activities);
             }
         }
+    }
+
+    public class ActivityParams
+    {
     }
 }
