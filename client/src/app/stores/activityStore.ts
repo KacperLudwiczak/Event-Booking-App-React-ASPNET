@@ -70,6 +70,10 @@ export default class ActivityStore {
     }
   };
 
+  setPagination = (pagination: Pagination) => {
+    this.pagination = pagination;
+  }
+
   private setActivity = (activity: Activity) => {
     const user = store.userStore.user;
     if (user) {
