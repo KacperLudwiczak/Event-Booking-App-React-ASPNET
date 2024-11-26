@@ -33,7 +33,11 @@ function ActivityDashboard() {
         <Button
           inverted
           floated="left"
-          style={{ borderRadius: "25px", margin: "20px" }}
+          style={{
+            borderRadius: "25px",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
           onClick={handleGetNext}
           loading={loadingNext}
           disabled={pagination?.totalPages === pagination?.currentPage}
