@@ -23,6 +23,13 @@ export default class ActivityStore {
     this.pagingParams = pagingParams;
   }
 
+  get axiosParams() {
+    const params = new URLSearchParams();
+    params.append('pageNumber', this.pagingParams.pageNumber.toString());
+    params.append('pageSize', this.pagingParams.pageSize.toString())
+    return params;
+  }
+
   get activitiesByDate() {
     return Array.from(this.activityRegistry.values()).sort(
       (a, b) => a.date!.getTime() - b.date!.getTime()
@@ -44,7 +51,7 @@ export default class ActivityStore {
   loadActivities = async () => {
     this.setLoadingInitial(true);
     try {
-      const result = await agent.Activities.list();
+      const result = await agent.Activities.list(this.axiosParams);
       result.data.forEach((activity) => {
         this.setActivity(activity);
       });
