@@ -39,7 +39,7 @@ Reactivities is a full-featured web application designed to provide an interacti
    - Navigate to the client-app folder.
    - Install dependencies by running:
      ```bash
-     cd client-app
+     cd client
      ```
    - Install the required npm packages:
      ```bash
