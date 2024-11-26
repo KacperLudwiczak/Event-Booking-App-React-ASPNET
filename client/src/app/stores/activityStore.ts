@@ -43,6 +43,7 @@ export default class ActivityStore {
       result.data.forEach((activity) => {
         this.setActivity(activity);
       });
+      this.setPagination(result.pagination)
       this.setLoadingInitial(false);
     } catch (error) {
       console.log(error);
