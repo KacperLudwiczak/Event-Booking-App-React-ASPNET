@@ -37,6 +37,11 @@ namespace Application.Activities
                     query = query.Where(item => item.Attendees.Any(attendee => attendee.Username == _userAccessor.GetUsername()));
                 }
 
+                if (request.Params.IsHost && !request.Params.IsGoing)
+                {
+                    query = query.Where(item => item.HostUsername == _userAccessor.GetUsername());
+                }
+
                 return Result<PagedList<ActivityDto>>.Success(await PagedList<ActivityDto>.CreateAsync(query,
                         request.Params.PageNumber, request.Params.PageSize));
             }
