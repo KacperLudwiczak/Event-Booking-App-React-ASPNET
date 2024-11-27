@@ -12,7 +12,7 @@ export default function ActivityListItemPlaceholder() {
     <Fragment>
       <Placeholder fluid style={placeholderStyles}>
         <Segment.Group>
-          <Segment style={{ minHeight: 110 }}>
+          <Segment style={{ minHeight: 125 }}>
             <Placeholder>
               <Placeholder.Header image>
                 <Placeholder.Line />
@@ -23,7 +23,7 @@ export default function ActivityListItemPlaceholder() {
               </Placeholder.Paragraph>
             </Placeholder>
           </Segment>
-          <Segment>
+          <Segment style={{ minHeight: 125 }}>
             <Placeholder>
               <Placeholder.Line />
               <Placeholder.Line />
