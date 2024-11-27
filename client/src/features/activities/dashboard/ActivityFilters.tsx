@@ -1,5 +1,7 @@
 import { Menu, Header, Segment, Item } from "semantic-ui-react";
 import Calendar from "react-calendar";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../../app/stores/store";
 
 const segmentStyles = {
   borderRadius: "25px",
@@ -10,7 +12,11 @@ const segmentStyles = {
   marginBottom: "25px",
 };
 
-export default function ActivityFilters() {
+function ActivityFilters() {
+  const {
+    activityStore: { predicate, setPredicate },
+  } = useStore();
+
   return (
     <Item style={{ marginTop: "31px" }}>
       <Segment style={segmentStyles}>
@@ -26,9 +32,21 @@ export default function ActivityFilters() {
             content="Filters"
             style={{ color: "#54c8ff" }}
           />
-          <Menu.Item content="All Events" />
-          <Menu.Item content="I'm going" />
-          <Menu.Item content="I'm hosting" />
+          <Menu.Item
+            content="All Events"
+            active={predicate.has("all")}
+            onClick={() => setPredicate("all", "true")}
+          />
+          <Menu.Item
+            content="I'm going"
+            active={predicate.has("isGoing")}
+            onClick={() => setPredicate("isGoing", "true")}
+          />
+          <Menu.Item
+            content="I'm hosting"
+            active={predicate.has("isHost")}
+            onClick={() => setPredicate("isHost", "true")}
+          />
         </Menu>
       </Segment>
       <Segment style={segmentStyles}>
@@ -38,8 +56,14 @@ export default function ActivityFilters() {
           content="Select date"
           style={{ color: "#54c8ff", margin: "10px" }}
         />
-        <Calendar />
+        <Calendar
+          onChange={(date) => setPredicate("startDate", date as Date)}
+          value={predicate.get("startDate") || new Date()}
+        />
       </Segment>
     </Item>
   );
 }
+
+const ObservedActivityFilters = observer(ActivityFilters);
+export default ObservedActivityFilters;
