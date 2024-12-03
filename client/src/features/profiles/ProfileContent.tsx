@@ -1,16 +1,13 @@
 import { observer } from "mobx-react-lite";
-import { Tab, TabPane } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
 import { Profile } from "../../app/models/profile";
 import ProfilePhotos from "./ProfilePhotos";
 import ProfileAbout from "./ProfileAbout";
 import ProfileFollowings from "./ProfileFollowings";
 import { useStore } from "../../app/stores/store";
+import ProfileActivities from "./ProfileActivities";
 
-const segmentStyles = {
-  border: "none",
-  borderRight: "1px solid #ddd",
-  boxShadow: "none",
-};
+
 
 interface Props {
   profile: Profile;
@@ -30,7 +27,7 @@ function ProfileContent({ profile }: Props) {
     },
     {
       menuItem: "Events",
-      render: () => <TabPane style={segmentStyles}>Events Content</TabPane>,
+      render: () => <ProfileActivities/>,
     },
     {
       menuItem: "Followers",
