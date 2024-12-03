@@ -14,6 +14,12 @@ import { UserActivity } from "../../app/models/profile";
 import { format } from "date-fns";
 import { useStore } from "../../app/stores/store";
 
+const segmentStyles = {
+    border: "none",
+    borderRight: "1px solid #ddd",
+    boxShadow: "none",
+  };
+
 const panes = [
   { menuItem: "Future Events", pane: { key: "future" } },
   { menuItem: "Past Events", pane: { key: "past" } },
@@ -37,7 +43,7 @@ function ProfileActivities() {
   };
 
   return (
-    <TabPane loading={loadingActivities}>
+    <TabPane loading={loadingActivities} style={segmentStyles}>
       <Grid>
         <Grid.Column width={16}>
           <Header floated="left" icon="calendar" content={"Activities"} />
