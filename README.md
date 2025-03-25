@@ -1,7 +1,7 @@
-# Reactivities
+# Event Booking
 
 ## Project Description
-Reactivities is a full-featured web application designed to provide an interactive dashboard for managing and participating in activities and events. Users can browse existing activities, create and manage their own events, follow other users, and sign up for activities they are interested in.
+Event Booking is a full-featured web application designed to provide an interactive dashboard for managing and participating in activities and events. Users can browse existing activities, create and manage their own events, follow other users, and sign up for activities they are interested in.
 
 ## Features
 
