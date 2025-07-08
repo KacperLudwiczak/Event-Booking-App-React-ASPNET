@@ -35,7 +35,7 @@ Event Booking is a full-featured web application designed to provide an interact
      ```
    - The application will start on the default port (e.g., `https://localhost:5001`).
 
-2. **Frontend (React)**:
+2. **Frontend (React.js)**:
    - Navigate to the client-app folder.
    - Install dependencies by running:
      ```bash
@@ -53,7 +53,7 @@ Event Booking is a full-featured web application designed to provide an interact
      
 ### System Requirements
 
-- **Node.js** version 12+ (for Angular)
+- **Node.js** version 12+ (for React.js)
 - **.NET SDK** version 5.0+ (for ASP.NET Core)
 - **SQL Server** as the database
 
