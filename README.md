@@ -1,4 +1,4 @@
-# Event Booking
+# Event Booking 🎉
 
 ![screenshot](client/public/event_booking.png)
 
